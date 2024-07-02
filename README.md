@@ -31,7 +31,7 @@
 - [ ] MQTT
 - [ ] Solace
 
-## Receivers
+### Receivers
 
 - [ ] HTTP
 - [ ] gRPC
