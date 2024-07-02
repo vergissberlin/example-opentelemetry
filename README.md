@@ -1,8 +1,8 @@
-# OpenTelementry Examples
+# OpenTelementry examples
 
 ## Features
 
-### Langauges
+### Languages (SDKs)
 
 - [ ] python
 - [ ] go
@@ -10,10 +10,31 @@
 - [ ] dart
 - [ ] nodejs
 
-### Visualisation tools
+### Exporters
 
-- [ ] Datadog
+- [ ] Zipkin
+- [ ] Prometheus
+- [ ] OpenCensus
+- [ ] AWS X-Ray
+- [ ] Google Cloud Trace
+- [ ] Jaeger
+- [ ] Lightstep
+- [ ] Honeycomb
+- [ ] Instana
+- [ ] Dynatrace
+- [ ] SignalFx
+- [ ] Wavefront
+- [ ] DataDog
 - [ ] New Relic
 - [ ] Sentry
 - [ ] Grafana
-- [ ] Jaeger
+- [ ] MQTT
+- [ ] Solace
+
+## Receivers
+
+- [ ] HTTP
+- [ ] gRPC
+- [ ] Solace
+- [ ] MQTT
+- [ ] Kafka
