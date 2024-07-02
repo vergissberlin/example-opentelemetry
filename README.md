@@ -1,5 +1,8 @@
 # OpenTelementry examples
 
+With this examples you can learn how to use OpenTelemetry in your applications. We have added examples for different languages and exporters.
+Only checked features are implemented.
+
 ## Features
 
 ### Languages (SDKs)
