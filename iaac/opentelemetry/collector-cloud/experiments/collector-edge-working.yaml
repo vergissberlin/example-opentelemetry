@@ -1,0 +1,48 @@
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Receivers
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+        cors:
+          allowed_origins:
+            - "*"
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Processors
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+processors:
+  batch:
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Exporters
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+exporters:
+  file:
+    path: /logs/collector.json
+
+  # Logging
+  logging:
+    loglevel: debug
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Service
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [file,logging]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [file,logging]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [file,logging]

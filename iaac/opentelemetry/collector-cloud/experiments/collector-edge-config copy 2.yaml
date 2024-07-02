@@ -1,0 +1,88 @@
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Receivers
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+        cors:
+          allowed_origins:
+            - "http://*"
+            - "https://*"
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Processors
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+processors:
+  batch:
+#  spanmetrics:
+#    metrics_exporter: prometheus
+  # temporary measure until description is fixed in .NET
+  # transform:
+  #   metric_statements:
+  #     - context: metric
+  #       statements:
+  #         - set(description, "Measures the duration of inbound HTTP requests") where name == "http.server.duration"
+  filter:
+    metrics:
+      exclude:
+        match_type: strict
+        metric_names:
+          - queueSize
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Exporters
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+exporters:
+  file:
+    path: /logs/collector.json
+  logging:
+    loglevel: debug
+  debug:
+    verbosity: detailed
+  otlp:
+    endpoint: "jaeger:4317"
+    tls:
+      insecure: true
+  #prometheus:
+  #  endpoint: "jaeger:4318"
+  #  resource_to_telemetry_conversion:
+  #    enabled: true
+  #  enable_open_metrics: true
+# Export traces to jaeger all in one image
+
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Extensions
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# extensions:
+#   health_check:
+#   pprof:
+#   zpages:
+
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Service
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+service:
+  # extensions: [health_check, pprof, zpages]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: 
+        - file
+        - logging
+        - otlp
+    metrics:
+      receivers: [otlp]
+      processors: [filter, batch]
+      exporters: 
+        - file
+        - logging
+        # - prometheus
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [file, logging]

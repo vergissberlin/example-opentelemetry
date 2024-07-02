@@ -1,0 +1,78 @@
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Receivers
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+        cors:
+          allowed_origins:
+            - "*"
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Processors
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+processors:
+  batch:
+  spanmetrics:
+    metrics_exporter: prometheus
+  # temporary measure until description is fixed in .NET
+  transform:
+    metric_statements:
+      - context: metric
+        statements:
+          - set(description, "Measures the duration of inbound HTTP requests") where name == "http.server.duration"
+  filter:
+    metrics:
+      exclude:
+        match_type: strict
+        metric_names:
+          - queueSize
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Exporters
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+exporters:
+  file:
+    path: /logs/collector.json
+  logging:
+    loglevel: debug
+  debug:
+    verbosity: detailed
+  jaeger:
+    endpoint: "http://jaeger:14250"
+    insecure: true
+
+# Export traces to jaeger all in one image
+  
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Extensions
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# extensions:
+#   health_check:
+#   pprof:
+#   zpages:
+
+
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Service
+# ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+service:
+  # extensions: [health_check, pprof, zpages]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [spanmetrics, batch]
+      exporters: [file, logging, otlp]
+    metrics:
+      receivers: [otlp]
+      processors: [filter, transform, batch]
+      exporters: [prometheus, file, logging]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [file, logging]
