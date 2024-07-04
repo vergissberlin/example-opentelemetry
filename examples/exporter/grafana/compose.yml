@@ -1,5 +1,8 @@
 name: prometheus-and-grafana
 
+networks:
+  monitoring:
+
 services:
   prometheus:
     image: prom/prometheus
@@ -10,19 +13,24 @@ services:
     ports:
       - "9090:9090"
       - "9093:9093"
+    networks:
+      - monitoring
 
-  node-exporter:
+  node_exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node-exporter
-    command:
-      - '--path.rootfs=/host'
-    network_mode: host
-    privileged: true
-    pid: host
+    container_name: node_exporter
+    ports:
+      - "9100:9100"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+    networks:
+      - monitoring
 
   grafana:
     image: grafana/grafana
@@ -33,3 +41,5 @@ services:
       - ./data/grafana:/var/lib/grafana
     depends_on:
       - prometheus
+    networks:
+      - monitoring
