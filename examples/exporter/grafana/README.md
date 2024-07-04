@@ -1,6 +1,6 @@
 # OpenTelemetry with Grafana
 
-Based on [video course](hhttps://www.udemy.com/course/mastering-prometheus-and-grafana/learn/lecture/27491608?start=0#overview) on <udemy.com>.
+Based on [video course](https://www.udemy.com/course/mastering-prometheus-and-grafana/learn/lecture/27491608?start=0#overview) on <udemy.com>.
 
 ## Components
 
@@ -9,13 +9,15 @@ Based on [video course](hhttps://www.udemy.com/course/mastering-prometheus-and-g
   - Alloy
   - Grafana Loki
 - **OpenTelemetry**
-  - Collector
+  - Collector (Grafana Alloy)
   - API
   - Autoinstumentation
   - SDK
-- **Alerts**
+- **Prometheus**
+  - Prometheus
   - Alertmanager
-  - Prometheus to Teams connector
+  - Prometheus to Teams Connector
+  - Pushgateway
 - **Visualisation**
   - Grafana
 
@@ -33,7 +35,7 @@ Based on [video course](hhttps://www.udemy.com/course/mastering-prometheus-and-g
 2. Open Node-Exporter <http://localhost:9100>
 3. Open Prometheus <http://localhost:9090>
 4. Open Grafana on <http://localhost:3000>
-5. Import dashboard from `grafana/dashboards` folder.
+5. Open Grafana Alloy <http://localhost:12345>
 
 ## Metrics
 

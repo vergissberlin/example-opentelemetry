@@ -28,7 +28,7 @@ receivers:
         send_resolved: true
   - name: 'webhook-receiver-teams'
     webhook_configs:
-      - url: "http://prom2teams:8089"
+      - url: "http://prometheus_prom2teams:8089"
         send_resolved: true
 
 
