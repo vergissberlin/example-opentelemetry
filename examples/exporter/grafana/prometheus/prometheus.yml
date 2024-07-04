@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+
+rule_files:
+  - "rules/alerts.yml"
+  - "rules/recordings.yml"
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - alertmanager:9093
+  - scheme: http
+  - basic_auth:
+      username: admin
+      password: password
+
+scrape_configs:
+  - job_name: 'node-docker'
+    static_configs:
+      - targets:
+        - 'localhost:9100'
+  - job_name: 'node-orbstack'
+    static_configs:
+      - targets:
+        - 'prometheus.orb.local:9100'
