@@ -1,10 +1,12 @@
+name: prometheus-and-grafana
+
 services:
   prometheus:
     image: prom/prometheus
     container_name: prometheus
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./data/prometheus:/prometheus \
+      - ./prometheus:/etc/prometheus
+      - ./data/prometheus:/prometheus
     ports:
       - "9090:9090"
       - "9093:9093"

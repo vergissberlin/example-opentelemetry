@@ -1,1 +1,46 @@
+groups:
+  - name: Alerts
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+      - alert: HighCpuLoad
+        expr: node_load1{job=~"node-.*"} > 1.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU load on {{ $labels.instance }}"
+          description: "{{ $labels.instance }} has a CPU load of {{ $value }}."
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal - node_memory_MemFree - node_memory_Buffers - node_memory_Cached) / node_memory_MemTotal * 100 > 80
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: "{{ $labels.instance }} has a memory usage of {{ $value }}%."
+  - name: example-age-alert-group
+    rules:
+    - alert: MetricTooOld
+      expr: metric_age_seconds > 300
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Metric {{ $labels.metric }} is too old"
+        description: "The Metric {{ $labels.metric }} is older than 5 minutes."
 
+    - alert: MetricTooNew
+      expr: metric_age_seconds < 0
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Metric {{ $labels.metric }} is too new"
+        description: "The Metric {{ $labels.metric }} has a negative timestamp."
