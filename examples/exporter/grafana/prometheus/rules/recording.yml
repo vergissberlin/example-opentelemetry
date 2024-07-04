@@ -1,5 +1,0 @@
-groups:
-- name: example-age-group
-  rules:
-  - record: metric_age_seconds
-    expr: time() - metric_timestamp(metric_name[5m])

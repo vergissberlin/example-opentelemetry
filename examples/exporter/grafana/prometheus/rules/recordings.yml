@@ -1,0 +1,22 @@
+groups:
+  - name: node_exporter_rules
+    rules:
+      - record: job:node_cpu_usage:avg1m
+        expr: avg(rate(node_cpu_seconds_total{mode!="idle"}[1m])) by (job)
+        labels:
+          severity: informational
+
+      - record: job:node_memory_usage:ratio
+        expr: 1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)
+        labels:
+          severity: informational
+
+      - record: job:node_disk_usage:ratio
+        expr: sum(node_filesystem_size_bytes{fstype!="tmpfs",fstype!="rootfs"} - node_filesystem_free_bytes{fstype!="tmpfs",fstype!="rootfs"}) by (job) / sum(node_filesystem_size_bytes{fstype!="tmpfs",fstype!="rootfs"}) by (job)
+        labels:
+          severity: informational
+
+      - record: job:node_network_transmit_bytes:rate
+        expr: sum(rate(node_network_transmit_bytes_total[5m])) by (job)
+        labels:
+          severity: informational
