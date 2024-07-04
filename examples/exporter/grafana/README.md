@@ -62,3 +62,15 @@ In Prometheus this metrics equivalent to:
 
 ➡ [Prometheus example board](http://localhost:9090/graph?g0.expr=sum(node_memory_Active_bytes%7Bjob%3D%22node-orbstack%22%7D)&g0.tab=0&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h&g1.expr=node_network_transmit_bytes_total&g1.tab=0&g1.display_mode=lines&g1.show_exemplars=0&g1.range_input=1h&g2.expr=node_memory_MemFree_bytes&g2.tab=0&g2.display_mode=lines&g2.show_exemplars=0&g2.range_input=1h&g3.expr=node_load15&g3.tab=0&g3.display_mode=lines&g3.show_exemplars=0&g3.range_input=1h&g4.expr=avg(node_filesystem_avail_bytes%20)%20by%20(device)&g4.tab=0&g4.display_mode=lines&g4.show_exemplars=0&g4.range_input=1h&g5.expr=node_network_receive_bytes_total%7Bdevice%3D%22eth0%22%7D&g5.tab=1&g5.display_mode=stacked&g5.show_exemplars=0&g5.range_input=1h&g6.expr=100%20-%20(avg%20by%20(instance)%20(irate(node_cpu_seconds_total%7Bmode%3D%22idle%22%7D%5B5m%5D))%20*%20100)&g6.tab=0&g6.display_mode=lines&g6.show_exemplars=0&g6.range_input=1h&g7.expr=avg(prometheus_http_requests_total)%20by%20(code)&g7.tab=0&g7.display_mode=lines&g7.show_exemplars=0&g7.range_input=1h)
 
+## Rules
+
+### Alerts
+
+Take a look to <https://samber.github.io/awesome-prometheus-alerts/rules> to get inspired for your
+own rules.
+
+- CPU Usage > 80%
+- Memory Usage > 80%
+- Disk Usage > 80%
+- Network Usage > 80%
+- HTTP Requests > 8000

@@ -44,3 +44,80 @@ groups:
       annotations:
         summary: "Metric {{ $labels.metric }} is too new"
         description: "The Metric {{ $labels.metric }} has a negative timestamp."
+
+  - name: Prometheus
+    rules:
+    - alert: PrometheusConfigurationReloadFailure
+      expr: prometheus_config_last_reload_successful != 1
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: Prometheus configuration reload failure (instance {{ $labels.instance }})
+        description: "Prometheus configuration reload error\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - alert: PrometheusTooManyRestarts
+      expr: changes(process_start_time_seconds{job=~"prometheus|pushgateway|alertmanager"}[15m]) > 2
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: Prometheus too many restarts (instance {{ $labels.instance }})
+        description: "Prometheus has restarted more than twice in the last 15 minutes. It might be crashlooping.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - alert: PrometheusAlertmanagerConfigurationReloadFailure
+      expr: alertmanager_config_last_reload_successful != 1
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: Prometheus AlertManager configuration reload failure (instance {{ $labels.instance }})
+        description: "AlertManager configuration reload error\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - alert: PrometheusRuleEvaluationSlow
+      expr: prometheus_rule_group_last_duration_seconds > prometheus_rule_group_interval_seconds
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: Prometheus rule evaluation slow (instance {{ $labels.instance }})
+        description: "Prometheus rule evaluation took more time than the scheduled interval. It indicates a slower storage backend access or too complex query.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - alert: PrometheusLargeScrape
+      expr: increase(prometheus_target_scrapes_exceeded_sample_limit_total[10m]) > 10
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: Prometheus large scrape (instance {{ $labels.instance }})
+        description: "Prometheus has many scrapes that exceed the sample limit\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - name: Docker
+    rules:
+    - alert: ContainerKilled
+      expr: time() - container_last_seen > 60
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: Container killed (instance {{ $labels.instance }})
+        description: "A container has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - alert: ContainerAbsent
+      expr: absent(container_last_seen)
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: Container absent (instance {{ $labels.instance }})
+        description: "A container is absent for 5 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - alert: ContainerHighMemoryUsage
+      expr: (sum(container_memory_working_set_bytes{name!=""}) BY (instance, name) / sum(container_spec_memory_limit_bytes > 0) BY (instance, name) * 100) > 80
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: Container High Memory usage (instance {{ $labels.instance }})
+        description: "Container Memory usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - alert: ContainerVolumeUsage
+      expr: (1 - (sum(container_fs_inodes_free{name!=""}) BY (instance) / sum(container_fs_inodes_total) BY (instance))) * 100 > 80
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: Container Volume usage (instance {{ $labels.instance }})
+        description: "Container Volume usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
