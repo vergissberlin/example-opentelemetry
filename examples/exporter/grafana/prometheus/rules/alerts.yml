@@ -1,5 +1,5 @@
 groups:
-  - name: Alerts
+  - name: Hardware
     rules:
       - alert: InstanceDown
         expr: up == 0
@@ -10,7 +10,7 @@ groups:
           summary: "Instance {{ $labels.instance }} down"
           description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
       - alert: HighCpuLoad
-        expr: node_load1{job=~"node-.*"} > 1.5
+        expr: node_load1{job=~"node_.*"} > 1.5
         for: 1m
         labels:
           severity: warning
@@ -25,7 +25,7 @@ groups:
         annotations:
           summary: "High memory usage on {{ $labels.instance }}"
           description: "{{ $labels.instance }} has a memory usage of {{ $value }}%."
-  - name: example-age-alert-group
+  - name: Metrics
     rules:
     - alert: MetricTooOld
       expr: metric_age_seconds > 300
