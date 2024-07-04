@@ -12,6 +12,15 @@ services:
       - ./data/prometheus:/prometheus
     ports:
       - "9090:9090"
+    networks:
+      - monitoring
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    ports:
       - "9093:9093"
     networks:
       - monitoring

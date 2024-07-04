@@ -11,10 +11,7 @@ alerting:
   - static_configs:
     - targets:
       - alertmanager:9093
-  - scheme: http
-  - basic_auth:
-      username: admin
-      password: password
+
 
 scrape_configs:
   - job_name: 'node_exporter'
