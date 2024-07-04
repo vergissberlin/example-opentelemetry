@@ -5,8 +5,8 @@ import time
 registry = CollectorRegistry()
 
 
-REQUEST_TIME = Summary("request_processing_seconds", "Time spent processing a function", registry=registry)
-MY_COUNTER= Counter("emitter:python:counter", "A counter for my function", ["mylabel"], registry=registry)
+REQUEST_TIME = Summary("push:emitter:request_processing_seconds", "Time spent processing a function", registry=registry)
+MY_COUNTER= Counter("push:emitter:python:counter", "A counter for my function", ["mylabel"], registry=registry)
 @REQUEST_TIME.time()
 def process_request(t):
     """A dummy function that takes some time."""
@@ -17,5 +17,5 @@ if __name__ == '__main__':
     while True:
         MY_COUNTER.labels(mylabel='myvalue').inc()
         process_request(random.random())
-        push_to_gateway('prometheus_pushgateway:9091', job='myjob', registry=CollectorRegistry())
+        push_to_gateway('prometheus_pushgateway:9091', job='myjob', registry=registry)
         time.sleep(1)
