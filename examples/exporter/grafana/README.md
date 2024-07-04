@@ -13,6 +13,9 @@ Based on [video course](hhttps://www.udemy.com/course/mastering-prometheus-and-g
   - API
   - Autoinstumentation
   - SDK
+- **Alerts**
+  - Alertmanager
+  - Prometheus to Teams connector
 - **Visualisation**
   - Grafana
 
