@@ -17,11 +17,7 @@ alerting:
       password: password
 
 scrape_configs:
-  - job_name: 'node-docker'
+  - job_name: 'node_exporter'
     static_configs:
       - targets:
-        - 'localhost:9100'
-  - job_name: 'node-orbstack'
-    static_configs:
-      - targets:
-        - 'prometheus.orb.local:9100'
+        - 'node_exporter:9100'
