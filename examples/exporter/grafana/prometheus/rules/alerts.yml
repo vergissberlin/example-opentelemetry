@@ -3,7 +3,7 @@ groups:
     rules:
       - alert: InstanceDown
         expr: up == 0
-        for: 1m
+        for: 5m
         labels:
           severity: critical
         annotations:
@@ -11,7 +11,7 @@ groups:
           description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
       - alert: HighCpuLoad
         expr: node_load1{job=~"node_.*"} > 1.5
-        for: 1m
+        for: 5m
         labels:
           severity: warning
         annotations:
@@ -19,7 +19,7 @@ groups:
           description: "{{ $labels.instance }} has a CPU load of {{ $value }}."
       - alert: HighMemoryUsage
         expr: (node_memory_MemTotal - node_memory_MemFree - node_memory_Buffers - node_memory_Cached) / node_memory_MemTotal * 100 > 80
-        for: 1m
+        for: 5m
         labels:
           severity: warning
         annotations:
@@ -97,14 +97,6 @@ groups:
       annotations:
         summary: Container killed (instance {{ $labels.instance }})
         description: "A container has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-    - alert: ContainerAbsent
-      expr: absent(container_last_seen)
-      for: 5m
-      labels:
-        severity: warning
-      annotations:
-        summary: Container absent (instance {{ $labels.instance }})
-        description: "A container is absent for 5 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
     - alert: ContainerHighMemoryUsage
       expr: (sum(container_memory_working_set_bytes{name!=""}) BY (instance, name) / sum(container_spec_memory_limit_bytes > 0) BY (instance, name) * 100) > 80
       for: 2m
