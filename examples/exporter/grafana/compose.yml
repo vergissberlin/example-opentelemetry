@@ -75,6 +75,22 @@ services:
     networks:
       - monitoring
     
+  grafana_alloy:
+    image: grafana/alloy
+    container_name: grafana_alloy
+    ports:
+      - 12345:12345
+    volumes:
+      - ./data/alloy:/var/lib/alloy/
+      - ./alloy/config.alloy:/etc/alloy/config.alloy
+    command: 
+      - "run"
+      - "--server.http.listen-addr=0.0.0.0:12345"
+      - "--storage.path=/var/lib/alloy/data"
+      - "/etc/alloy/config.alloy"
+    networks:
+      - grafana
+
   grafana_loki:
     image: grafana/loki
     container_name: grafana_loki
@@ -92,16 +108,15 @@ services:
     networks:
       - monitoring
   
-  grafana_alloy:
-    image: grafana/alloy
-    container_name: grafana_alloy
-    ports:
-      - 12345:12345
+  grafana_tempo:
+    image: grafana/tempo
+    container_name: grafana_tempo
     volumes:
-      - ./data/alloy:/var/lib/alloy
-      - ./alloy/config.alloy:/usr/local/etc/alloy/config.alloy
+      - ./data/grafana_tempo:/var/lib/tempo
+    ports:
+      - 3200:3200
     networks:
-      - grafana
+      - monitoring
 
   emitter_python:
     build:
