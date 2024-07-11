@@ -1,16 +1,22 @@
 /*instrumentation.ts*/
 import * as opentelemetry from '@opentelemetry/sdk-node';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-proto';
 import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-proto';
 import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
-const { BasicTracerProvider, SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-base');
 const { CollectorTraceExporter } =  require('@opentelemetry/exporter-collector-grpc');
-
+import { Resource } from '@opentelemetry/resources';
+import {
+    SEMRESATTRS_SERVICE_NAME,
+    SEMRESATTRS_SERVICE_VERSION,
+  } from '@opentelemetry/semantic-conventions';
+  
 
 const sdk = new opentelemetry.NodeSDK({
+    resource: new Resource({
+        [SEMRESATTRS_SERVICE_NAME]: 'dice-service-nodejs',
+        [SEMRESATTRS_SERVICE_VERSION]: '1.0',
+      }),
   traceExporter: new CollectorTraceExporter({
-    // optional - default url is http://localhost:4318/v1/traces
     url: 'grpc://localhost:4317/v1/traces'
   }),
   metricReader: new PeriodicExportingMetricReader({
