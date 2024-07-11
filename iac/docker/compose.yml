@@ -1,0 +1,32 @@
+name: 'opentelemetry'
+
+services:
+  collector:
+    image: otel/opentelemetry-collector-contrib:0.104.0
+    container_name: collector
+    command: ["--config=/etc/otelcol/config.yaml"]
+    ports:
+      - "4317:4317" # OLTP receiver over GRPC
+      - "4318:4318" # OTLP receiver over HTTP
+      - "13133:13133" # health_check extension
+    volumes:
+      - "./opentelemetry/collector-config.yaml:/etc/otelcol/config.yaml"
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.58
+    container_name: jaeger
+    ports:
+      - 16686:16686
+
+  aspire:
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+    container_name: aspire
+    ports:
+      - 18888:18888
+
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    volumes:
+      - ./opentelemetry/prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
