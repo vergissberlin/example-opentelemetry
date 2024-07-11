@@ -1,6 +1,6 @@
-# OpenTelemetry with Grafana
+# Prometheus with Grafana
 
-Based on [video course](https://www.udemy.com/course/mastering-prometheus-and-grafana/learn/lecture/27491608?start=0#overview) on <udemy.com>.
+Based on [video course](https://www.udemy.com/course/mastering-prometheus-and-grafana/learn/lecture/27491608?start=0#overview) on <udemy.com>. The you can find the code examples of the course [here](https://github.com/aussiearef/ShoeHubV2/tree/main).
 
 ## Components
 

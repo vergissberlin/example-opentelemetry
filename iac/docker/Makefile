@@ -21,5 +21,4 @@ ps: status
 restart: down
 	make up
 
-
 default: restart
