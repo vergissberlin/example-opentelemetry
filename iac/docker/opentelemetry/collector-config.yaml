@@ -21,7 +21,6 @@ exporters:
     tls:
       insecure: true
     endpoint: aspire:18889
-
   prometheus:
     endpoint: 0.0.0.0:9090
     namespace: testapp
