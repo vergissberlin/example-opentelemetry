@@ -1,0 +1,18 @@
+[package]
+name = "dice_server"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "dice_server"
+doc = false
+
+[dependencies]
+hyper = { version = "0.14", features = ["full"] }
+tokio = { version = "1.29", features = ["full"] }
+rand = { version = "0.8" }
+opentelemetry = "0.24.0"
+opentelemetry_sdk = "0.24.1"
+opentelemetry-stdout = { version = "0.5.0", features = ["trace"] }
+
