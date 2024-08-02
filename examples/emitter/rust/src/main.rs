@@ -3,8 +3,6 @@ use hyper::{Body, Method, Request, Response, Server, StatusCode};
 use opentelemetry::trace::{SpanKind, Status};
 use opentelemetry::{global, trace::Tracer};
 use opentelemetry_sdk::propagation::TraceContextPropagator;
-use opentelemetry_sdk::trace::TracerProvider;
-use opentelemetry_stdout::SpanExporter;
 use rand::Rng;
 use std::{convert::Infallible, net::SocketAddr};
 
@@ -33,18 +31,21 @@ async fn handle(req: Request<Body>) -> Result<Response<Body>, Infallible> {
     Ok(response)
 }
 
+// replace with code from here: https://docs.rs/opentelemetry-otlp/latest/opentelemetry_otlp/#kitchen-sink-full-configuration
 fn init_tracer() {
+    let exporter = opentelemetry_otlp::new_exporter().tonic();
+
     global::set_text_map_propagator(TraceContextPropagator::new());
-    let provider = TracerProvider::builder()
-        .with_simple_exporter(SpanExporter::default())
-        .build();
-    global::set_tracer_provider(provider);
+    let _ = opentelemetry_otlp::new_pipeline()
+        .tracing()
+        .with_exporter(exporter)
+        .install_simple();
 }
 
 #[tokio::main]
 async fn main() {
     init_tracer();
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 80));
 
     let make_svc = make_service_fn(|_conn| async { Ok::<_, Infallible>(service_fn(handle)) });
 

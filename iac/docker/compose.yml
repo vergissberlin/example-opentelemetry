@@ -1,4 +1,4 @@
-name: 'opentelemetry'
+name: "opentelemetry"
 
 services:
   collector:
