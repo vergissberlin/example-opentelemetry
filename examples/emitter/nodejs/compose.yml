@@ -1,0 +1,13 @@
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: examples-opentelemetry-emitter-nodejs
+    ports:
+      - "3000:3000"
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default
