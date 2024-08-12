@@ -7,33 +7,33 @@ Only checked features are implemented.
 
 ### Languages (SDKs)
 
-- [ ] python
+- [ ] dart
 - [x] go
 - [ ] java
-- [ ] dart
 - [x] nodejs
+- [ ] python
 - [ ] rust
 
 ### Exporters
 
-- [ ] Zipkin
-- [ ] Prometheus
-- [ ] OpenCensus
 - [ ] AWS X-Ray
+- [ ] DataDog
+- [ ] Dynatrace
 - [ ] Google Cloud Trace
-- [ ] Jaeger
-- [ ] Lightstep
+- [ ] Grafana
 - [ ] Honeycomb
 - [ ] Instana
-- [ ] Dynatrace
-- [ ] SignalFx
-- [ ] Wavefront
-- [ ] DataDog
-- [ ] New Relic
-- [ ] Sentry
-- [ ] Grafana
+- [ ] Jaeger
+- [ ] Lightstep
 - [ ] MQTT
+- [ ] New Relic
+- [ ] OpenCensus
+- [ ] Prometheus
+- [ ] Sentry
+- [ ] SignalFx
 - [ ] Solace
+- [ ] Wavefront
+- [ ] Zipkin
 
 ### Receivers
 
