@@ -3,10 +3,6 @@
 # TARGETS
 # =============================================================================
 
-os: .logo ## Show running containers
-	$(call DOCKER_SERVICE,Emitter,${LIST_EMITTERS},${PATH_EMITTERS})
-
-
 #### Application
 .setup:
 	@echo -e "${H2BEGIN}Setup${H2END}"
