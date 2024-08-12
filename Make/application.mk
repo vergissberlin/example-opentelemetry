@@ -3,6 +3,46 @@
 # TARGETS
 # =============================================================================
 
+PATH_COLLECTORS=examples/collectors
+PATH_RECEIVERS=examples/receivers
+PATH_EMITTERS=examples/emitters
+PATH_EXPORTERS=examples/exporters
+
+LIST_COLLECTORS=opentelemetry
+LIST_EMITTERS=nodejs
+LIST_RECEIVERS=prometheus
+LIST_EXPORTERS=
+
+
+define SERVICE_STATUS
+	@echo -e "${H1BEGIN}${1}${H1END}"
+	@for item in ${2}; do \
+		if [ $$(docker compose -f ${3}/$${item}/compose.yml ps --services --status running | wc -l) -gt 0 ]; then \
+			echo -e "${PBEGIN}Running ${1} in $${item}${PEND}"; \
+			echo -e "${P_SUCCESS_BEGIN}"; \
+			docker compose -f ${3}/$${item}/compose.yml ps --services --status running; \
+			echo -e "${P_SUCCESS_END}"; \
+		fi; \
+		if [ $$(docker compose -f ${3}/$${item}/compose.yml ps --services  --status exited --status paused --status restarting --status removing --status dead --status exited | wc -l) -gt 0 ]; then \
+			echo -e "${PBEGIN}Failing ${item} in $${item}${PEND}"; \
+			echo -e "${P_WARNING_BEGIN}"; \
+			docker compose -f ${3}/$${item}/compose.yml ps --services --status exited --status paused --status restarting --status removing --status dead --status exited]; \
+			echo -e "${P_WARNING_END}"; \
+		fi; \
+	done
+endef
+
+define SERVICE_CONTROL
+	@echo -e "${H1BEGIN}${1}${H1END}"
+	@for item in ${2}; do \
+		docker compose -f ${3}/$${item}/compose.yml ${4}; \
+	done
+endef
+
+os: .logo ## Show running containers
+	$(call DOCKER_SERVICE,Emitter,${LIST_EMITTERS},${PATH_EMITTERS})
+
+
 #### Application
 .setup:
 	@echo -e "${H2BEGIN}Setup${H2END}"
@@ -25,6 +65,21 @@ info: .logo ## Prints out project information
 	@echo -e "${FBOLD}Count tags:${FRESET}\t $$( git tag | wc -l )"
 	@echo -e "${FBOLD}Count commits:${FRESET}\t\t$$( git rev-list --count HEAD )"
 
+up: .logo ## Starts all collectors, emitters and receivers
+	@make .setup
+	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},up -d)
+	$(call SERVICE_CONTROL,Emitters,${LIST_EMITTERS},${PATH_EMITTERS},up -d)
+	$(call SERVICE_CONTROL,Receivers,${LIST_RECEIVERS},${PATH_RECEIVERS},up -d)
+
+down: .logo ## Stops all collectors, emitters and receivers
+	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},down -v)
+	$(call SERVICE_CONTROL,Emitters,${LIST_EMITTERS},${PATH_EMITTERS},down -v)
+	$(call SERVICE_CONTROL,Receivers,${LIST_RECEIVERS},${PATH_RECEIVERS},down -v)
+
+ps: .logo ## Show running containers
+	$(call SERVICE_STATUS,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS})
+	$(call SERVICE_STATUS,Emitters,${LIST_EMITTERS},${PATH_EMITTERS})
+	$(call SERVICE_STATUS,Receivers,${LIST_RECEIVERS},${PATH_RECEIVERS})
 
 # =============================================================================
 # TARGET ALIASES
@@ -35,4 +90,3 @@ ps: status
 st: status
 sh: bash
 start: up
-
