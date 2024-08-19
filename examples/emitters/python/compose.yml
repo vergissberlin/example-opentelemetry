@@ -1,0 +1,29 @@
+name: prometheus-and-grafana
+
+services:
+  emitter-python:
+    build:
+      context: ./emitter/python
+    container_name: emitter-python
+    ports:
+      - 8050:5000
+    networks:
+      - monitoring
+
+  emitter-python-shoehub:
+    build:
+      context: ./emitter/shoehub
+    container_name: emitter-pyhton-shoehub
+    ports:
+      - 5001:8080
+    networks:
+      - monitoring
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default
+  monitoring:
+    external: false
+  grafana:
+    external: false

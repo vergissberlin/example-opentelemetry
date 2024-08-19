@@ -1,12 +1,5 @@
 name: prometheus-and-grafana
 
-networks:
-  monitoring:
-    external: false
-  grafana:
-    external: false
-
-
 services:
   prometheus:
     image: prom/prometheus
@@ -61,77 +54,12 @@ services:
     networks:
       - monitoring
 
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default
+  monitoring:
+    external: false
   grafana:
-    image: grafana/grafana-oss
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    environment:
-      GF_DATASOURCE: prometheus
-    volumes:
-      - ./data/grafana:/var/lib/grafana
-    depends_on:
-      - prometheus
-    networks:
-      - monitoring
-    
-  grafana_alloy:
-    image: grafana/alloy
-    container_name: grafana_alloy
-    ports:
-      - 12345:12345
-    volumes:
-      - ./data/alloy:/var/lib/alloy/
-      - ./alloy/config.alloy:/etc/alloy/config.alloy
-    command: 
-      - "run"
-      - "--server.http.listen-addr=0.0.0.0:12345"
-      - "--storage.path=/var/lib/alloy/data"
-      - "/etc/alloy/config.alloy"
-    networks:
-      - grafana
-
-  grafana_loki:
-    image: grafana/loki
-    container_name: grafana_loki
-    ports:
-      - "3100:3100"
-    networks:
-      - monitoring
-
-  grafana_promtail:
-    image: grafana/promtail
-    container_name: grafana_promtail
-    volumes:
-      # - ./promtail:/etc/promtail
-      - ./data/promtail:/var/log/promtail
-    networks:
-      - monitoring
-  
-  grafana_tempo:
-    image: grafana/tempo
-    container_name: grafana_tempo
-    volumes:
-      - ./data/grafana_tempo:/var/lib/tempo
-    ports:
-      - 3200:3200
-    networks:
-      - monitoring
-
-  emitter_python:
-    build:
-      context: ./emitter/python
-    container_name: emitter_python
-    ports:
-      - 8050:5000
-    networks:
-      - monitoring
-
-  emitter_shoehub:
-    build:
-      context: ./emitter/shoehub
-    container_name: emitter_shoehub
-    ports:
-      - 5001:8080
-    networks:
-      - monitoring
+    external: false

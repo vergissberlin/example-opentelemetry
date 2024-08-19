@@ -1,3 +1,5 @@
+name: examples-opentelemetry-emitter-nodejs
+
 services:
   nodejs:
     build:
