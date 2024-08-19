@@ -1,19 +1,19 @@
 name: prometheus-and-grafana
 
 services:
-  emitter-python-random:
+  emitter_python_random:
     build:
       context: ./random
-    container_name: emitter-python-random
+    container_name: emitter_python_random
     ports:
       - 8050:5000
     networks:
       - monitoring
 
-  emitter-python-shoehub:
+  emitter_python_shoehub:
     build:
       context: ./emitter/shoehub
-    container_name: emitter-pyhton-shoehub
+    container_name: emitter_python_shoehub
     ports:
       - 5001:8080
     networks:

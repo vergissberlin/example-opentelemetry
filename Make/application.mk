@@ -11,18 +11,21 @@
 
 up: .logo ## Starts all collectors, emitters and receivers
 	@make .setup
-	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},up -d --remove-orphans)
 	$(call SERVICE_CONTROL,Emitters,${LIST_EMITTERS},${PATH_EMITTERS},up -d --remove-orphans)
+	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},up -d --remove-orphans)
+	$(call SERVICE_CONTROL,Exporters,${LIST_EXPORTERS},${PATH_EXPORTERS},up -d --remove-orphans)
 	$(call SERVICE_CONTROL,Receivers,${LIST_RECEIVERS},${PATH_RECEIVERS},up -d --remove-orphans)
 
 down: .logo ## Stops all collectors, emitters and receivers
-	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},down -v)
 	$(call SERVICE_CONTROL,Emitters,${LIST_EMITTERS},${PATH_EMITTERS},down -v)
+	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},down -v)
+	$(call SERVICE_CONTROL,Exporters,${LIST_EXPORTERS},${PATH_EXPORTERS},down -v)
 	$(call SERVICE_CONTROL,Receivers,${LIST_RECEIVERS},${PATH_RECEIVERS},down -v)
 
 ps: .logo ## Show running containers
-	$(call SERVICE_STATUS,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS})
 	$(call SERVICE_STATUS,Emitters,${LIST_EMITTERS},${PATH_EMITTERS})
+	$(call SERVICE_STATUS,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS})
+	$(call SERVICE_STATUS,Exporters,${LIST_EXPORTERS},${PATH_EXPORTERS})
 	$(call SERVICE_STATUS,Receivers,${LIST_RECEIVERS},${PATH_RECEIVERS})
 
 info: .logo ## Prints out project information

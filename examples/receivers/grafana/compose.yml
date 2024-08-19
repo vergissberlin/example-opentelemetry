@@ -1,9 +1,9 @@
-name: prometheus-and-grafana
+name: example_receivers_grafana
 
 services:
-  grafana:
+  receivers_grafana:
     image: grafana/grafana-oss
-    container_name: grafana
+    container_name: receivers_grafana
     ports:
       - "3000:3000"
     environment:
@@ -13,9 +13,9 @@ services:
     networks:
       - monitoring
     
-  grafana_alloy:
+  receivers_grafana_alloy:
     image: grafana/alloy
-    container_name: grafana_alloy
+    container_name: receivers_grafana_alloy
     ports:
       - 12345:12345
     volumes:
@@ -29,26 +29,26 @@ services:
     networks:
       - grafana
 
-  grafana_loki:
+  receivers_grafana_loki:
     image: grafana/loki
-    container_name: grafana_loki
+    container_name: receivers_grafana_loki
     ports:
       - "3100:3100"
     networks:
       - monitoring
 
-  grafana_promtail:
+  receivers_grafana_promtail:
     image: grafana/promtail
-    container_name: grafana_promtail
+    container_name: receivers_grafana_promtail
     volumes:
       # - ./promtail:/etc/promtail
       - ./data/promtail:/var/log/promtail
     networks:
       - monitoring
   
-  grafana_tempo:
+  receivers_grafana_tempo:
     image: grafana/tempo
-    container_name: grafana_tempo
+    container_name: receivers_grafana_tempo
     volumes:
       - ./data/grafana_tempo:/var/lib/tempo
     ports:

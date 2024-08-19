@@ -2,9 +2,9 @@ name: 'examples-receivers-aspire'
 
 services:
 
-  aspire:
+  receivers_aspire:
     image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
-    container_name: aspire
+    container_name: receivers_aspire
     ports:
       - 18888:18888
 

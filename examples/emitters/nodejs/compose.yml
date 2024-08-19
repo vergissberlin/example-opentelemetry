@@ -1,11 +1,11 @@
-name: examples-opentelemetry-emitter-nodejs
+name: examples_opentelemetry_emitter_nodejs
 
 services:
-  nodejs:
+  emitter_nodejs_dice:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: examples-opentelemetry-emitter-nodejs
+      dockerfile: ./dice/Dockerfile
+    container_name: emitter_nodejs_dice
     ports:
       - "8030:8030"
 
