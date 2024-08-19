@@ -15,11 +15,6 @@ collector-status: .logo ## Show the status of the collectors
 collector-logs: .logo ## Show logs from the collectors
 	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},logs -f)
 
-collector-open: .logo ## Open the collector in the browser
-	@echo -e "${H2BEGIN}Open the collector in the browser${H2END}"
-	@echo -e "${PBEGIN}open http://0.0.0.0:16686${PEND}\n"
-	@open http://0.0.0.0:16686
-
 # =============================================================================
 # TARGET ALIASES
 # =============================================================================

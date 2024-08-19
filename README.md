@@ -19,9 +19,10 @@ With this examples you can learn how to use OpenTelemetry in your applications. 
 
 ### Collectors
 
-| Service                 | Status | URL                   |
-|-------------------------|--------|-----------------------|
-| OpenTelemetry Collector | ✅      | <http://0.0.0.0:4318> |
+| Service                         | Status | URL                   |
+|---------------------------------|--------|-----------------------|
+| OpenTelemetry Collector         | ✅      | <http://0.0.0.0:4318> |
+| OpenTelemetry Collector Contrib | ✅      | <http://0.0.0.0:5318> |
 
 ### Processors
 

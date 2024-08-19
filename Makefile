@@ -18,7 +18,7 @@ PATH_EXPORTERS=examples/exporters
 PATH_RECEIVERS=examples/receivers
 
 LIST_EMITTERS=nodejs python
-LIST_COLLECTORS=opentelemetry
+LIST_COLLECTORS=opentelemetry opentelemetry-contrib
 LIST_PROCESSORS=
 LIST_EXPORTERS=
 LIST_RECEIVERS=aspire grafana jaeger prometheus
