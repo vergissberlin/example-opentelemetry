@@ -2,7 +2,7 @@ import { trace } from '@opentelemetry/api'
 import express, { Express } from 'express'
 import { rollTheDice } from './dice'
 
-const PORT: number = parseInt(process.env.PORT || '3030')
+const PORT: number = parseInt(process.env.PORT || '8030')
 const app: Express = express()
 
 app.get('/', (req, res) => {
