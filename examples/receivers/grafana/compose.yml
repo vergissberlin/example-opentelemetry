@@ -1,7 +1,7 @@
-name: example_receivers_grafana
+name: otel_receiver_grafana
 
 services:
-  receivers_grafana:
+  grafana:
     image: grafana/grafana-oss
     container_name: receivers_grafana
     ports:
@@ -13,7 +13,7 @@ services:
     networks:
       - monitoring
     
-  receivers_grafana_alloy:
+  grafana_alloy:
     image: grafana/alloy
     container_name: receivers_grafana_alloy
     ports:
@@ -29,7 +29,7 @@ services:
     networks:
       - grafana
 
-  receivers_grafana_loki:
+  grafana_loki:
     image: grafana/loki
     container_name: receivers_grafana_loki
     ports:
@@ -37,7 +37,7 @@ services:
     networks:
       - monitoring
 
-  receivers_grafana_promtail:
+  grafana_promtail:
     image: grafana/promtail
     container_name: receivers_grafana_promtail
     volumes:
@@ -46,7 +46,7 @@ services:
     networks:
       - monitoring
   
-  receivers_grafana_tempo:
+  grafana_tempo:
     image: grafana/tempo
     container_name: receivers_grafana_tempo
     volumes:

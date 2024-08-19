@@ -1,7 +1,7 @@
-name: examples_receivers_prometheus
+name: otel_receiver_prometheus
 
 services:
-  receivers_prometheus:
+  prometheus:
     image: prom/prometheus
     container_name: receivers_prometheus
     volumes:
@@ -12,7 +12,7 @@ services:
     networks:
       - monitoring
 
-  receivers_prometheus_alertmanager:
+  prometheus_alertmanager:
     image: prom/alertmanager:latest
     container_name: receivers_prometheus_alertmanager
     volumes:
@@ -22,7 +22,7 @@ services:
     networks:
       - monitoring
 
-  receivers_prometheus_node_exporter:
+  prometheus_node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: receivers_prometheus_node_exporter
     ports:
@@ -38,7 +38,7 @@ services:
     networks:
       - monitoring
 
-  receivers_prometheus_prom2teams:
+  prometheus_prom2teams:
     image: idealista/prom2teams:3.2.3
     container_name: receivers_prometheus_prom2teams
     environment:
@@ -46,7 +46,7 @@ services:
     ports:
       - 8089:8089
 
-  receivers_prometheus_pushgateway:
+  prometheus_pushgateway:
     image: prom/pushgateway
     container_name: receivers_prometheus_pushgateway
     ports:

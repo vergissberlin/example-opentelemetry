@@ -1,7 +1,6 @@
-name: examples_emitter_nodejs
-
+name: otel_emitter_nodejs
 services:
-  emitter_nodejs_dice:
+  nodejs_dice:
     build:
       context: ./dice/
       dockerfile: Dockerfile

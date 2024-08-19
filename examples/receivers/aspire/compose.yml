@@ -1,8 +1,8 @@
-name: 'examples_receivers_aspire'
+name: otel_receiver_aspire
 
 services:
 
-  receivers_aspire:
+  aspire:
     image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
     container_name: receivers_aspire
     ports:

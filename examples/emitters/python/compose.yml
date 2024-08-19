@@ -1,7 +1,7 @@
-name: examples_emitter_python
+name: otel_emitter_python
 
 services:
-  emitter_python_random:
+  python_random:
     build:
       context: ./random
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
     networks:
       - monitoring
 
-  emitter_python_shoehub:
+  python_shoehub:
     build:
       context: ./shoehub
       dockerfile: Dockerfile
