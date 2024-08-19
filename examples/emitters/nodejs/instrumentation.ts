@@ -17,11 +17,11 @@ const sdk = new opentelemetry.NodeSDK({
         [SEMRESATTRS_SERVICE_VERSION]: '1.0',
       }),
   traceExporter: new CollectorTraceExporter({
-    url: 'grpc://localhost:4317/v1/traces'
+    url: 'grpc://collector:4317/v1/traces'
   }),
   metricReader: new PeriodicExportingMetricReader({
     exporter: new OTLPMetricExporter({
-      url: 'http://localhost:4317/v1/metrics', // url is optional and can be omitted - default is http://localhost:4318/v1/metrics
+      url: 'http://collector:4317/v1/metrics', // url is optional and can be omitted - default is http://localhost:4318/v1/metrics
       headers: {}, // an optional object containing custom headers to be sent with each request
     }),
   }),
