@@ -1,9 +1,11 @@
-# OpenTelemetry examples
+# OpenTelementry examples
 
-With these examples you can learn how to use OpenTelemetry in your applications. We have added examples for different languages and exporters.
+With this examples you can learn how to use OpenTelemetry in your applications. We have added examples for different languages and exporters.
 Only checked features are implemented.
 
 ## Features
+
+> An easy way ro get all open port is also to run `make ps` in the root of the repository.
 
 ### Emitters (SDKs)
 
@@ -27,7 +29,7 @@ Only checked features are implemented.
 | Processor | Status |
 |-----------|--------|
 | Batch     |        |
-| Filter      |        |
+| Filter    |        |
 
 ### Exporters
 

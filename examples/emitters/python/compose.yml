@@ -4,6 +4,7 @@ services:
   emitter_python_random:
     build:
       context: ./random
+      dockerfile: Dockerfile
     container_name: emitter_python_random
     ports:
       - 8050:5000
@@ -12,7 +13,8 @@ services:
 
   emitter_python_shoehub:
     build:
-      context: ./emitter/shoehub
+      context: ./shoehub
+      dockerfile: Dockerfile
     container_name: emitter_python_shoehub
     ports:
       - 5001:8080
