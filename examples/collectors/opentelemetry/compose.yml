@@ -23,10 +23,3 @@ services:
     container_name: aspire
     ports:
       - 18888:18888
-
-  prometheus:
-    image: prom/prometheus:v2.53.0
-    volumes:
-      - ./opentelemetry/prometheus.yaml:/etc/prometheus/prometheus.yml
-    ports:
-      - 9090:9090
