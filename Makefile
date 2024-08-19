@@ -18,8 +18,8 @@ PATH_EMITTERS=examples/emitters
 PATH_EXPORTERS=examples/exporters
 
 LIST_COLLECTORS=opentelemetry
-LIST_EMITTERS=nodejs
-LIST_RECEIVERS=prometheus
+LIST_EMITTERS=nodejs python
+LIST_RECEIVERS=grafana prometheus
 LIST_EXPORTERS=
 
 # =============================================================================

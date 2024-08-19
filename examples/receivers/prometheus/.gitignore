@@ -1,4 +1,2 @@
-data/grafana/
-data/grafana_tempo/
 data/prometheus/
 data/promtail/

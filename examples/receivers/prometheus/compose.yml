@@ -1,4 +1,4 @@
-name: prometheus-and-grafana
+name: examples-receivers-prometheus
 
 services:
   prometheus:
@@ -54,12 +54,9 @@ services:
     networks:
       - monitoring
 
-
 networks:
   default:
     external: true
     name: examples-opentelemetry-default
   monitoring:
-    external: false
-  grafana:
     external: false
