@@ -123,7 +123,7 @@ services:
       context: ./emitter/python
     container_name: emitter_python
     ports:
-      - 5000:5000
+      - 8050:5000
     networks:
       - monitoring
 
