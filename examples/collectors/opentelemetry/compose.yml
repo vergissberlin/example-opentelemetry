@@ -23,3 +23,8 @@ services:
     container_name: aspire
     ports:
       - 18888:18888
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default

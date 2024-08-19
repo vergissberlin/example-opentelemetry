@@ -17,5 +17,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Listening for requests on http://localhost:${PORT}?rolls=12`)
+    console.log(`Listening for requests on http://0.0.0.0:${PORT}?rolls=12`)
 })
