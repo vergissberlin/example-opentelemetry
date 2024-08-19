@@ -13,7 +13,7 @@ import {
 
 const sdk = new opentelemetry.NodeSDK({
     resource: new Resource({
-        [SEMRESATTRS_SERVICE_NAME]: 'dice-service-nodejs',
+        [SEMRESATTRS_SERVICE_NAME]: 'nodejs-dice-service',
         [SEMRESATTRS_SERVICE_VERSION]: '1.0',
       }),
   traceExporter: new CollectorTraceExporter({
