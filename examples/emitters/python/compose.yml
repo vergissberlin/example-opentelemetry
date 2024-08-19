@@ -1,4 +1,4 @@
-name: prometheus-and-grafana
+name: examples_emitter_python
 
 services:
   emitter_python_random:

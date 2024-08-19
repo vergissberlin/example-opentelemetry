@@ -5,43 +5,57 @@ Only checked features are implemented.
 
 ## Features
 
-### Languages (SDKs)
+### Emitters (SDKs)
 
-- [ ] dart
-- [x] go
-- [ ] java
-- [x] nodejs
-- [ ] python
-- [ ] rust
+| SDK    | Status | URL                   |
+|--------|--------|-----------------------|
+| dart   |        |                       |
+| go     |        |                       |
+| java   |        |                       |
+| nodejs | ✅      | <http://0.0.0.0:8030> |
+| python | ✅      |                       |
+| rust   |        |                       |
+
+### Collectors
+
+| Service                 | Status | URL                   |
+|-------------------------|--------|-----------------------|
+| OpenTelemetry Collector | ✅      | <http://0.0.0.0:4318> |
+
+### Processors
+
+| Processor | Status |
+|-----------|--------|
+| Batch     |        |
+| Filter      |        |
 
 ### Exporters
 
-- [ ] AWS X-Ray
-- [ ] DataDog
-- [ ] Dynatrace
-- [ ] Google Cloud Trace
-- [ ] Grafana
-- [ ] Honeycomb
-- [ ] Instana
-- [ ] Jaeger
-- [ ] Lightstep
-- [ ] MQTT
-- [ ] New Relic
-- [ ] OpenCensus
-- [ ] Prometheus
-- [ ] Sentry
-- [ ] SignalFx
-- [ ] Solace
-- [ ] Wavefront
-- [ ] Zipkin
+| Service | Status | URL |
+|---------|--------|-----|
+| Kaflka  |        |     |
+| MQTT    |        |     |
+| Solace  |        |     |
 
 ### Receivers
 
-- [ ] HTTP
-- [ ] gRPC
-- [ ] Solace
-- [ ] MQTT
-- [ ] Kafka
+| Service            | Status | URL                    |
+|--------------------|--------|------------------------|
+| AWS X-Ray          |        |                        |
+| DataDog            |        |                        |
+| Dynatrace          |        |                        |
+| Google Cloud Trace |        |                        |
+| Grafana            | ✅      | <http://0.0.0.0:3000>  |
+| Honeycomb          |        |                        |
+| Instana            |        |                        |
+| Jaeger             | ✅      | <http://0.0.0.0:16686> |
+| Lightstep          |        |                        |
+| New Relic          |        |                        |
+| OpenCensus         |        |                        |
+| Prometheus         |        |                        |
+| Sentry             |        |                        |
+| SignalFx           |        |                        |
+| Wavefront          |        |                        |
 
 ## Getting started
 

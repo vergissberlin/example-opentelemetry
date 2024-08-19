@@ -1,7 +1,7 @@
-name: 'opentelemetry'
+name: 'examples_collectors_opentelemetry'
 
 services:
-  collector:
+  collector_opentelemetry_contrib:
     image: otel/opentelemetry-collector-contrib:0.104.0
     container_name: collector
     command: ["--config=/etc/otelcol/config.yaml"]

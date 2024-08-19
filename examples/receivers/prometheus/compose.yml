@@ -1,9 +1,9 @@
-name: examples-receivers-prometheus
+name: examples_receivers_prometheus
 
 services:
-  prometheus:
+  receivers_prometheus:
     image: prom/prometheus
-    container_name: prometheus
+    container_name: receivers_prometheus
     volumes:
       - ./prometheus:/etc/prometheus
       - ./data/prometheus:/prometheus
@@ -12,9 +12,9 @@ services:
     networks:
       - monitoring
 
-  prometheus_alertmanager:
+  receivers_prometheus_alertmanager:
     image: prom/alertmanager:latest
-    container_name: prometheus_alertmanager
+    container_name: receivers_prometheus_alertmanager
     volumes:
       - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     ports:
@@ -22,9 +22,9 @@ services:
     networks:
       - monitoring
 
-  prometheus_node_exporter:
+  receivers_prometheus_node_exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: prometheus_node_exporter
+    container_name: receivers_prometheus_node_exporter
     ports:
       - "9100:9100"
     volumes:
@@ -38,17 +38,17 @@ services:
     networks:
       - monitoring
 
-  prometheus_prom2teams:
+  receivers_prometheus_prom2teams:
     image: idealista/prom2teams:3.2.3
-    container_name: prometheus_prom2teams
+    container_name: receivers_prometheus_prom2teams
     environment:
       PROM2TEAMS_CONNECTOR: "https://prod-156.westeurope.logic.azure.com:443/workflows/b8ae13484b124b148515273c843ccaf2/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=H2EBFv_xpXNWaTShyDnIpPN4CqkSYMaId3hydP280PM"
     ports:
       - 8089:8089
 
-  prometheus_pushgateway:
+  receivers_prometheus_pushgateway:
     image: prom/pushgateway
-    container_name: prometheus_pushgateway
+    container_name: receivers_prometheus_pushgateway
     ports:
       - "9091:9091"
     networks:

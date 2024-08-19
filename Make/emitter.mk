@@ -29,6 +29,15 @@ emitter-%-logs: .logo ## Show logs from the emitter in the specified language
 	@echo -e "${H2BEGIN}Emitter logs of ${*}${H2END}\n"
 	docker compose -f ${PATH_EMITTERS}/$*/compose.yml logs -f
 
+emitter-%-build: .logo ## Build the emitter in the specified language
+	@echo -e "${H2BEGIN}Build emitter with ${*}${H2END}"
+	@echo -e "${PBEGIN}docker compose -f ${PATH_EMITTERS}/$*/compose.yml build${PEND}\n"
+	@docker compose -f ${PATH_EMITTERS}/$*/compose.yml build --no-cache
+
+emitter-%-bash: .logo ## Open a bash shell in the emitter in the specified language
+	@echo -e "${H2BEGIN}Open a bash shell in the emitter with ${*}${H2END}"
+	@echo -e "${PBEGIN}docker compose -f ${PATH_EMITTERS}/$*/compose.yml exec ${*} bash${PEND}\n"
+	@docker compose -f ${PATH_EMITTERS}/$*/compose.yml exec ${*} bash
 
 # =============================================================================
 # TARGET ALIASES

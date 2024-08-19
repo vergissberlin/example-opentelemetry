@@ -1,9 +1,9 @@
-name: 'examples-receivers-jaeger'
+name: 'examples_receivers_jaeger'
 
 services:
-  jaeger:
+  receivers_jaeger:
     image: jaegertracing/all-in-one:1.58
-    container_name: jaeger
+    container_name: receivers_jaeger
     ports:
       - 16686:16686
 
