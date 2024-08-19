@@ -1,0 +1,14 @@
+name: 'examples-receivers-aspire'
+
+services:
+
+  aspire:
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+    container_name: aspire
+    ports:
+      - 18888:18888
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default

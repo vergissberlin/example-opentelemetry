@@ -6,14 +6,14 @@
 emitter-%-up: .logo ## Starts the emitter in the specified language
 	@make .setup
 	@echo -e "${H2BEGIN}Run emitter with ${*}${H2END}"
-	@echo -e "${PBEGIN}docker compose -f ${PATH_EMITTERS}/$*/compose.yml up -d --build${PEND}\n"
+	@echo -e "${PBEGIN}docker compose -f ${PATH_EMITTERS}/$*/compose.yml up -d --build --remove-orphans${PEND}\n"
 	@docker compose -f ${PATH_EMITTERS}/$*/compose.yml up -d --build
 
 emitter-%-restart: .logo ## Restarts the emitter in the specified language
 	@echo -e "${H2BEGIN}Restart emitter with ${*}${H2END}"
 	@echo -e "${PBEGIN}docker compose -f ${PATH_EMITTERS}/$*/compose.yml down -v${PEND}\n"
 	@docker compose -f ${PATH_EMITTERS}/$*/compose.yml down -v
-	@echo -e "${PBEGIN}docker compose -f ${PATH_EMITTERS}/$*/compose.yml up -d --build${PEND}\n"
+	@echo -e "${PBEGIN}docker compose -f ${PATH_EMITTERS}/$*/compose.yml up -d --build --remove-orphans${PEND}\n"
 	@docker compose -f ${PATH_EMITTERS}/$*/compose.yml up -d
 
 emitter-%-down: .logo ## Stops the emitter in the specified language

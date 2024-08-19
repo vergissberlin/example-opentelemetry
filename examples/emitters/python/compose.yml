@@ -1,10 +1,10 @@
 name: prometheus-and-grafana
 
 services:
-  emitter-python:
+  emitter-python-random:
     build:
-      context: ./emitter/python
-    container_name: emitter-python
+      context: ./random
+    container_name: emitter-python-random
     ports:
       - 8050:5000
     networks:

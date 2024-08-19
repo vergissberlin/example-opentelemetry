@@ -1,0 +1,13 @@
+name: 'examples-receivers-jaeger'
+
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:1.58
+    container_name: jaeger
+    ports:
+      - 16686:16686
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default

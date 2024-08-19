@@ -10,8 +10,6 @@ services:
       GF_DATASOURCE: prometheus
     volumes:
       - ./data/grafana:/var/lib/grafana
-    depends_on:
-      - prometheus
     networks:
       - monitoring
     

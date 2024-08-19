@@ -10,19 +10,7 @@ services:
       - "4318:4318" # OTLP receiver over HTTP
       - "13133:13133" # health_check extension
     volumes:
-      - "./opentelemetry/collector-config.yaml:/etc/otelcol/config.yaml"
-
-  jaeger:
-    image: jaegertracing/all-in-one:1.58
-    container_name: jaeger
-    ports:
-      - 16686:16686
-
-  aspire:
-    image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
-    container_name: aspire
-    ports:
-      - 18888:18888
+      - "./config/collector-config.yaml:/etc/otelcol/config.yaml"
 
 networks:
   default:
