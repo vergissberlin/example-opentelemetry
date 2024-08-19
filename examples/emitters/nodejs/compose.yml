@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: examples-opentelemetry-emitter-nodejs
     ports:
-      - "3000:3000"
+      - "8030:3000"
 
 networks:
   default:
