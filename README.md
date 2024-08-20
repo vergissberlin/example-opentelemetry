@@ -43,6 +43,7 @@ With this examples you can learn how to use OpenTelemetry in your applications. 
 
 | Service            | Status | URL                    |
 |--------------------|--------|------------------------|
+| Aspire             | ✅      | <http://0.0.0.0:18888> |
 | AWS X-Ray          |        |                        |
 | DataDog            |        |                        |
 | Dynatrace          |        |                        |
