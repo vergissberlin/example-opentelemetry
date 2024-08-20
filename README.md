@@ -69,6 +69,14 @@ With this examples you can learn how to use OpenTelemetry in your applications. 
     2. `make receiver-up`
 4. Run the example in the language you have chosen (see README.md in the language folder)
 
+### Command line interface
+
+To make it easy as possible to run the examples, we have added a command line interface.
+
+![Command line interface with make](docs/cli.png)
+
+You can start all examples with one command. Just run `make up` in the root of the repository. Or you can start the examples individually with `make emitter-<language>-up` or `make receiver-<language>-up`.
+
 ## Contributing
 
 If you want to contribute to this repository, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
