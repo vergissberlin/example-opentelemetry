@@ -1,8 +1,6 @@
 # Receivers - datadog
 
-This receiver example with Datadaog is part of the [Thinkport OpenTelemetry Examples](../../) project.
-
-This example emittes a trace from an emitter, an pass it through an [OpenTelemetry collector](https://https://opentelemetry.io/docs/collector/), through an exporter to datadog:
+This receiver example with Datadaog is part of the [Thinkport OpenTelemetry Examples](../../) project. A example emitter emittes a trace, and pass it to an [OpenTelemetry collector](https://https://opentelemetry.io/docs/collector/), through an exporter to datadog:
 
 ```mermaid
 graph LR
