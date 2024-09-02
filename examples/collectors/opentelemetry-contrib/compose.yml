@@ -1,4 +1,4 @@
-name: 'otel_collectors_opentelemetry_contrib'
+name: 'otel-collectors-opentelemetry_contrib'
 
 services:
   collector_opentelemetry_contrib:

@@ -1,9 +1,9 @@
-name: otel_receiver_grafana
+name: otel-receivers-grafana
 
 services:
   grafana:
     image: grafana/grafana-oss
-    container_name: receivers_grafana
+    container_name: otel-receivers-grafana
     ports:
       - "3000:3000"
     environment:
@@ -13,9 +13,9 @@ services:
     networks:
       - monitoring
     
-  grafana_alloy:
+  grafana-alloy:
     image: grafana/alloy
-    container_name: receivers_grafana_alloy
+    container_name: otel-receivers-grafana-alloy
     ports:
       - 12345:12345
     volumes:
@@ -29,26 +29,26 @@ services:
     networks:
       - grafana
 
-  grafana_loki:
+  grafana-loki:
     image: grafana/loki
-    container_name: receivers_grafana_loki
+    container_name: otel-receivers-grafana-loki
     ports:
       - "3100:3100"
     networks:
       - monitoring
 
-  grafana_promtail:
+  grafana-promtail:
     image: grafana/promtail
-    container_name: receivers_grafana_promtail
+    container_name: otel-receivers-grafana-promtail
     volumes:
       # - ./promtail:/etc/promtail
       - ./data/promtail:/var/log/promtail
     networks:
       - monitoring
   
-  grafana_tempo:
+  grafana-tempo:
     image: grafana/tempo
-    container_name: receivers_grafana_tempo
+    container_name: otel-receivers-grafana-tempo
     volumes:
       - ./data/grafana_tempo:/var/lib/tempo
     ports:

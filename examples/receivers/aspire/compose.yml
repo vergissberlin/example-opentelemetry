@@ -1,10 +1,10 @@
-name: otel_receiver_aspire
+name: otel-receivers-aspire
 
 services:
 
   aspire:
     image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
-    container_name: receivers_aspire
+    container_name: otel-receivers-aspire
     ports:
       - 18888:18888
 

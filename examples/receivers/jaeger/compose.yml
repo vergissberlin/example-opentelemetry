@@ -1,4 +1,4 @@
-name: otel_receiver_jaeger
+name: otel-receivers-jaeger
 
 services:
   jaeger:
