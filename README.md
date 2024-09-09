@@ -23,8 +23,8 @@ Only checked features are implemented.
 
 |             Service             | Status | Protocol |          URL          |
 | ------------------------------- | ------ | -------- | --------------------- |
-| OpenTelemetry Collector         | ✅      | gRPC     | <grpc://0.0.0.0:4318> |
-| OpenTelemetry Collector Contrib | ✅      | gRPC     | <grpc://0.0.0.0:5318> |
+| OpenTelemetry Collector         | ✅      | gRPC     | `grpc://0.0.0.0:4318` |
+| OpenTelemetry Collector Contrib | ✅      | gRPC     | `grpc://0.0.0.0:5318` |
 
 ### Processors
 
