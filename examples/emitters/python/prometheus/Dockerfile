@@ -1,5 +1,10 @@
 FROM python:3.7-slim
 
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install python dependencies
 COPY ./requirements.txt /requirements.txt
@@ -13,7 +18,7 @@ WORKDIR /app
 COPY . /app
 
 # Expose port
-EXPOSE 8050
+EXPOSE 5000
 
 # Run the application
-CMD ["flask", "run", "-p", "8050"]
+CMD ["python", "main.py"]

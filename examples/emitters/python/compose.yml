@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: otel-emitters-python-dice
     ports:
-      - 8050:5000
+      - 8050:8050
     networks:
       - monitoring
 
