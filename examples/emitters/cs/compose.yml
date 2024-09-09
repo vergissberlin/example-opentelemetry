@@ -1,13 +1,13 @@
-name: otel-emitters-python
+name: otel-emitters-cs
 
 services:
-  python-dice:
+  cs-shoehub:
     build:
-      context: ./dice
+      context: ./shoehub
       dockerfile: Dockerfile
-    container_name: otel-emitters-python-dice
+    container_name: otel-emitters-cs-shoehub
     ports:
-      - 8050:5000
+      - 5001:8080
     networks:
       - monitoring
 

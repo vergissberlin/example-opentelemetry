@@ -1,10 +1,10 @@
-name: otel_emitter_nodejs
+name: otel-emitters-nodejs
 services:
-  nodejs_dice:
+  nodejs-dice:
     build:
       context: ./dice/
       dockerfile: Dockerfile
-    container_name: emitter_nodejs_dice
+    container_name: otel-emitters-nodejs-dice
     ports:
       - "8030:8030"
 

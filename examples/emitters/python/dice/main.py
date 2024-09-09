@@ -4,7 +4,6 @@ import time
 
 registry = CollectorRegistry()
 
-
 REQUEST_TIME = Summary("push:emitter:request_processing_seconds", "Time spent processing a function", registry=registry)
 MY_COUNTER= Counter("push:emitter:python:counter", "A counter for my function", ["mylabel"], registry=registry)
 @REQUEST_TIME.time()
