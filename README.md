@@ -15,7 +15,7 @@ Only checked features are implemented.
 | dart   |        |                                        |
 | go     |        |                                        |
 | java   |        |                                        |
-| nodejs | ✅      | <http://0.0.0.0:8030/rolldice?roll=12> |
+| nodejs | ✅      | <http://0.0.0.0:8030/?rolls=12>        |
 | python | ✅      | <http://0.0.0.0:8050/rolldice?roll=12> |
 | rust   |        |                                        |
 

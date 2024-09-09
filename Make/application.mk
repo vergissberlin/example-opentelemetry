@@ -44,6 +44,23 @@ info: .logo ## Prints out project information
 	@echo -e "${FBOLD}Count tags:${FRESET}\t $$( git tag | wc -l )"
 	@echo -e "${FBOLD}Count commits:${FRESET}\t\t$$( git rev-list --count HEAD )"
 
+open: .logo ## Open the project in the browser
+	@echo -e "${H2BEGIN}Open the project in the browser${H2END}"
+	@echo -e "${PBEGIN}Aspire:\t${PEND}http://localhost:18888"
+	@open http://localhost:18888
+	
+	@echo -e "${PBEGIN}Grafana:\t${PEND}http://localhost:3000"
+	@open http://localhost:3000
+	
+	@echo -e "${PBEGIN}Jaeger:\t${PEND}http://localhost:16686"
+	@open http://localhost:16686
+	
+	@echo -e "${PBEGIN}Prometheus:\t${PEND}http://localhost:9090"
+	
+	@open http://localhost:8050
+	@open http://localhost:8030?rolls=12
+
+
 # =============================================================================
 # TARGET ALIASES
 # =============================================================================
