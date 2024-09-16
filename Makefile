@@ -17,7 +17,7 @@ PATH_COLLECTORS=examples/collectors
 PATH_EXPORTERS=examples/exporters
 PATH_RECEIVERS=examples/receivers
 
-LIST_EMITTERS=nodejs python
+LIST_EMITTERS=dart nodejs python
 LIST_COLLECTORS=opentelemetry opentelemetry-contrib
 LIST_PROCESSORS=
 LIST_EXPORTERS=

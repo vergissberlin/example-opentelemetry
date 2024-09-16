@@ -1,0 +1,17 @@
+name: otel-emitters-dart
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default
+
+services:
+  button:
+    build:
+      context: ./button
+      dockerfile: Dockerfile
+    container_name: otel-emitters-dart-button
+    ports:
+      - 8051:80
+
+
