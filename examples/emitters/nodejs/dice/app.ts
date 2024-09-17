@@ -5,6 +5,9 @@ import { rollTheDice } from './dice'
 const PORT: number = parseInt(process.env.PORT || '8030')
 const app: Express = express()
 
+// Favicon
+app.use('/favicon.ico', express.static('public/images/favicon.ico'));
+
 // Roll the dice
 app.get('/', (req, res) => {
     const rolls = req.query.rolls ? parseInt(req.query.rolls.toString()) : NaN

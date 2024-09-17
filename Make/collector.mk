@@ -9,7 +9,7 @@ collector-up: .logo ## Starts the collectors
 collector-down: .logo ## Shuts down the collectors
 	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},down -v)
 
-collector-status: .logo ## Show the status of the collectors
+collector-ps: .logo ## Show the status of the collectors
 	$(call SERVICE_STATUS,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS})
 
 collector-logs: .logo ## Show logs from the collectors
@@ -23,5 +23,5 @@ clog: collector-logs
 cps: collector-status
 cst: collector-status
 csh: collector-bash
-collector-ps: collector-status
+collector-status: collector-ps
 

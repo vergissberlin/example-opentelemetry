@@ -46,9 +46,11 @@ info: .logo ## Prints out project information
 
 open: .logo ## Open the project in the browser
 	@echo -e "${H2BEGIN}Open the project in the browser${H2END}"
-	@echo -e "${PBEGIN}Aspire:\t${PEND}http://localhost:18888"
+	@echo -e "${PBEGIN}Aspire:\t${PEND}Is on Port http://localhost:18888 but"
+	@echo -e "you have to look into the logs to get the login link."
+
 	@open http://localhost:18888
-	
+
 	@echo -e "${PBEGIN}Grafana:\t${PEND}http://localhost:3000"
 	@open http://localhost:3000
 	

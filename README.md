@@ -1,17 +1,30 @@
 # OpenTelemetry examples
 
-With this examples you can learn how to use OpenTelemetry in your applications.
-We have added examples for different languages and exporters.
-Only checked features are implemented.
+<table>
+  <tr>
+    <th width="20%" style="padding:0">
+      <img src="./docs/exampler.png" title="The Exampler"/>
+    </th>
+    <td style="background: #f0f8ff;font-size:124%;">
+      With these examples you can learn how 
+      to use OpenTelemetry in your applications. 
+      We have added examples for different languages and exporters. 
+      Only checked features are implemented.
+   </td>
+  </tr>
+</table>
+
+---
 
 ## Features
 
-> An easy way ro get all open port is also to run `make ps` in the root of the repository after you have started the services with `make up`.
+> An easy way ro get all open port is also to run `make ps` in the root of the
+> repository after you have started the services with `make up`.
 
 ### Emitters (SDKs)
 
-|  SDK   | Status |                  URL                   |
-| ------ | ------ | -------------------------------------- |
+| SDK    | Status | URL                                    |
+|--------|--------|----------------------------------------|
 | dart   |        |                                        |
 | go     |        |                                        |
 | java   |        |                                        |
@@ -21,30 +34,30 @@ Only checked features are implemented.
 
 ### Collectors
 
-|             Service             | Status | Protocol |          URL          |
-| ------------------------------- | ------ | -------- | --------------------- |
+| Service                         | Status | Protocol | URL                   |
+|---------------------------------|--------|----------|-----------------------|
 | OpenTelemetry Collector         | ✅      | gRPC     | `grpc://0.0.0.0:4318` |
 | OpenTelemetry Collector Contrib | ✅      | gRPC     | `grpc://0.0.0.0:5318` |
 
 ### Processors
 
 | Processor | Status |
-| --------- | ------ |
+|-----------|--------|
 | Batch     |        |
 | Filter    |        |
 
 ### Exporters
 
 | Service | Status | URL |
-| ------- | ------ | --- |
+|---------|--------|-----|
 | Kaflka  |        |     |
 | MQTT    |        |     |
 | Solace  |        |     |
 
 ### Receivers
 
-|      Service       | Status |          URL           |
-| ------------------ | ------ | ---------------------- |
+| Service            | Status | URL                    |
+|--------------------|--------|------------------------|
 | Aspire             | ✅      | <http://0.0.0.0:18888> |
 | AWS X-Ray          |        |                        |
 | DataDog            |        |                        |
@@ -69,16 +82,21 @@ Only checked features are implemented.
 3. Start the collector and receiver locally with Docker
     1. `make collector-up`
     2. `make receiver-up`
-4. Run the example in the language you have chosen (see README.md in the language folder)
+4. Run the example in the language you have chosen (see README.md in the
+   language folder)
 
 ### Command line interface
 
-To make it easy as possible to run the examples, we have added a command line interface.
+To make it easy as possible to run the examples, we have added a command line
+interface.
 
 ![Command line interface with make](docs/cli.png)
 
-You can start all examples with one command. Just run `make up` in the root of the repository. Or you can start the examples individually with `make emitter-<language>-up` or `make receiver-<language>-up`.
+You can start all examples with one command. Just run `make up` in the root of
+the repository. Or you can start the examples individually
+with `make emitter-<language>-up` or `make receiver-<language>-up`.
 
 ## Contributing
 
-If you want to contribute to this repository, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+If you want to contribute to this repository, please read
+the [CONTRIBUTING.md](CONTRIBUTING.md) file.
