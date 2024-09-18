@@ -6,11 +6,11 @@ networks:
     name: examples-opentelemetry-default
 
 services:
-  button:
+  web:
     build:
-      context: ./button
+      context: ./web
       dockerfile: Dockerfile
-    container_name: otel-emitters-dart-button
+    container_name: otel-emitters-dart-web
     ports:
       - 8051:80
 

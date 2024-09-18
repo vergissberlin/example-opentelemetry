@@ -16,8 +16,8 @@ RUN git clone https://github.com/flutter/flutter.git -b stable --depth 1 /usr/lo
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
 # Enable flutter web
-RUN flutter channel stable
-RUN flutter upgrade
+# RUN flutter channel stable
+# RUN flutter upgrade
 RUN flutter config --enable-web
 RUN flutter doctor -v
 

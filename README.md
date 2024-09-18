@@ -23,21 +23,21 @@
 
 ### Emitters (SDKs)
 
-| SDK    | Status | URL                                    |
-|--------|--------|----------------------------------------|
-| dart   |        |                                        |
-| go     |        |                                        |
-| java   |        |                                        |
-| nodejs | ✅      | <http://0.0.0.0:8030/?rolls=12>        |
-| python | ✅      | <http://0.0.0.0:8050/rolldice?roll=12> |
-| rust   |        |                                        |
+| SDK    | Status | URL                                    | Docs                               |
+|--------|--------|----------------------------------------|------------------------------------|
+| dart   | ✔️     | <http://0.0.0.0:8051/>                 | [code](examples/emitters/dart/web) |
+| go     |        |                                        |                                    |
+| java   |        |                                        |                                    |
+| nodejs | ✔️     | <http://0.0.0.0:8030/?rolls=12>        | [code](examples/emitters/nodejs)   |
+| python | ✔️     | <http://0.0.0.0:8050/rolldice?roll=12> | [code](examples/emitters/python)   |
+| rust   |        |                                        |                                    |
 
 ### Collectors
 
 | Service                         | Status | Protocol | URL                   |
 |---------------------------------|--------|----------|-----------------------|
-| OpenTelemetry Collector         | ✅      | gRPC     | `grpc://0.0.0.0:4318` |
-| OpenTelemetry Collector Contrib | ✅      | gRPC     | `grpc://0.0.0.0:5318` |
+| OpenTelemetry Collector         | ✔️     | gRPC     | `grpc://0.0.0.0:4318` |
+| OpenTelemetry Collector Contrib | ✔️     | gRPC     | `grpc://0.0.0.0:5318` |
 
 ### Processors
 
@@ -48,25 +48,26 @@
 
 ### Exporters
 
-| Service | Status | URL |
-|---------|--------|-----|
-| Kaflka  |        |     |
-| MQTT    |        |     |
-| Solace  |        |     |
+| Service     | Status | URL |
+|-------------|--------|-----|
+| Kafka       |        |     |
+| MQTT        |        |     |
+| Solace      |        |     |
+| File system |        |     |
 
 ### Receivers
 
 | Service            | Status | URL                    |
 |--------------------|--------|------------------------|
-| Aspire             | ✅      | <http://0.0.0.0:18888> |
+| Aspire             | ✔️     | <http://0.0.0.0:18888> |
 | AWS X-Ray          |        |                        |
 | DataDog            |        |                        |
 | Dynatrace          |        |                        |
 | Google Cloud Trace |        |                        |
-| Grafana            | ✅      | <http://0.0.0.0:3000>  |
+| Grafana            | ✔️     | <http://0.0.0.0:3000>  |
 | Honeycomb          |        |                        |
 | Instana            |        |                        |
-| Jaeger             | ✅      | <http://0.0.0.0:16686> |
+| Jaeger             | ✔️     | <http://0.0.0.0:16686> |
 | Lightstep          |        |                        |
 | New Relic          |        |                        |
 | OpenCensus         |        |                        |
