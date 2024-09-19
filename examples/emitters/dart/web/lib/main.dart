@@ -11,7 +11,6 @@ import 'package:opentelemetry/api.dart'
         registerGlobalTracerProvider,
         registerGlobalTextMapPropagator,
         ResourceAttributes,
-        spanFromContext,
         StatusCode,
         W3CTraceContextPropagator,
         TextMapGetter,
@@ -267,7 +266,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(4)),
                     ),
-                    minimumSize: Size(96.0, 96.0), // Ensures the button is
+                    minimumSize: const Size(96.0, 96.0), // Ensures the
+                    // button is
                     // square
                   ),
                   child: const Icon(
