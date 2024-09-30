@@ -4,6 +4,7 @@
 
 #### Collector
 collector-up: .logo ## Starts the collectors
+	@make .setup
 	$(call SERVICE_CONTROL,Collectors,${LIST_COLLECTORS},${PATH_COLLECTORS},up -d --remove-orphans)
 
 collector-down: .logo ## Shuts down the collectors

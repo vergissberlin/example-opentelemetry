@@ -24,6 +24,7 @@ Flutter application.
     or if you prefer to use Aspire:
     ```bash make
     make receiver-aspire-up
+    make receiver-aspire-logs
     ```
 3. Start the Flutter app by running
     ```bash

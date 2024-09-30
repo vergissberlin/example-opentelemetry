@@ -53,7 +53,7 @@ final exporter = ConsoleExporter();
 final processors = [
   BatchSpanProcessor(
     CollectorExporter(
-      Uri.parse('http://0.0.0.0.0:4318/v1/traces'),
+      Uri.parse('http://0.0.0.0:4318/v1/traces'),
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,PUT,PATCH,POST,DELETE,OPTIONS',

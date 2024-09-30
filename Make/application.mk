@@ -6,7 +6,7 @@
 #### Application
 .setup:
 	@echo -e "${H2BEGIN}Setup${H2END}"
-	@echo -e "${PBEGIN}Create docker network if it is not allready exists${PEND}"
+	@echo -e "${PBEGIN}Create docker network if it is not already exists${PEND}"
 	@docker network create examples-opentelemetry-default 2>/dev/null || true
 
 up: .logo ## Starts all collectors, emitters and receivers
