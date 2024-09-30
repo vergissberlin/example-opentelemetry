@@ -20,7 +20,7 @@ import 'package:opentelemetry/src/api/context/context_manager.dart';
 import 'package:opentelemetry/src/experimental_api.dart'
     show NoopContextManager;
 
-const String instrumentationName = 'dart-web-service';
+const String instrumentationName = 'dart-dice-service';
 
 final exampleAttributes = [
   Attribute.fromBoolean('custom.boolean', true),
@@ -34,7 +34,7 @@ final exampleAttributes = [
 ];
 
 final resource = Resource([
-  Attribute.fromString(ResourceAttributes.serviceName, 'dart-web'),
+  Attribute.fromString(ResourceAttributes.serviceName, 'dart-dice'),
   Attribute.fromString(ResourceAttributes.deploymentEnvironment, 'Development'),
   Attribute.fromString(ResourceAttributes.serviceVersion, '1.0.0'),
 ]);
