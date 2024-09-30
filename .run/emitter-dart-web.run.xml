@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="emitter-dart-web" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="additionalArgs" value="--web-browser-flag &quot;--disable-web-security&quot;" />
-    <option name="filePath" value="$PROJECT_DIR$/examples/emitters/dart/web/lib/main.dart" />
-    <method v="2" />
-  </configuration>
-</component>
