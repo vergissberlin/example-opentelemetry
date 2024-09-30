@@ -8,9 +8,9 @@ networks:
 services:
   web:
     build:
-      context: ./web
+      context: ./dice
       dockerfile: Dockerfile
-    container_name: otel-emitters-dart-web
+    container_name: otel-emitters-dart-dice
     ports:
       - 8051:80
 

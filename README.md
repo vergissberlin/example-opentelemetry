@@ -25,7 +25,7 @@
 
 | SDK    | Status | URL                                    | Docs                               |
 |--------|--------|----------------------------------------|------------------------------------|
-| dart   | ✔️     | <http://0.0.0.0:8051/>                 | [code](examples/emitters/dart/web) |
+| dart   | ✔️     | <http://0.0.0.0:8051/>                 | [code](examples/emitters/dart/dice) |
 | go     |        |                                        |                                    |
 | java   |        |                                        |                                    |
 | nodejs | ✔️     | <http://0.0.0.0:8030/?rolls=12>        | [code](examples/emitters/nodejs)   |

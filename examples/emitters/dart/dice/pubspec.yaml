@@ -1,4 +1,4 @@
-name: "otel_dart_web"
+name: "otel_dart_dice"
 description: "OpenTelemetry with Flutter example."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -14,7 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
