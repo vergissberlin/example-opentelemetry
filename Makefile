@@ -17,7 +17,7 @@ PATH_EXPORTERS=examples/exporters
 PATH_RECEIVERS=examples/receivers
 
 LIST_EMITTERS=dart nodejs python
-LIST_COLLECTORS=datadog opentelemetry opentelemetry-contrib
+LIST_COLLECTORS=datadog-agent opentelemetry opentelemetry-contrib
 LIST_PROCESSORS=
 LIST_EXPORTERS=
 LIST_RECEIVERS=aspire grafana jaeger prometheus
