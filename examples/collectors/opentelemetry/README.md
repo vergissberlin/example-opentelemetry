@@ -11,7 +11,7 @@
 2. View the spans in the CLI
 
     ```bash
-    make collector-logs
+    make collectors-logs
     ```
 
 3. Create a span with CURL

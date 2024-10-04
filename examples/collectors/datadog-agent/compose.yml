@@ -1,6 +1,8 @@
+name: 'collectors-opentelemetry-datadog-agent'
+
 services:
-  dd-agent:
-    container_name: dd-agent
+  datadog-agent:
+    container_name: otel-collectors-datadog-agent
     image: gcr.io/datadoghq/agent:7
     env_file:
       - .env
@@ -10,3 +12,8 @@ services:
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
     pid: "host"
     restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default

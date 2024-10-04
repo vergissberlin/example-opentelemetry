@@ -3,7 +3,7 @@ name: 'otel-collectors-opentelemetry'
 services:
   collector-opentelemetry:
     image: otel/opentelemetry-collector:0.104.0
-    container_name: collector
+    container_name: otel-collectors-opentelemetry
     command: ["--config=/etc/otelcol/config.yaml"]
     ports:
       - "5317:4317" # OLTP receiver over GRPC

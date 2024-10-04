@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="collector-down" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
-    <makefile filename="$PROJECT_DIR$/Make/collector.mk" target="collector-down" workingDirectory="" arguments="">
+  <configuration default="false" name="collectors-down" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
+    <makefile filename="$PROJECT_DIR$/Make/collector.mk" target="collectors-down" workingDirectory="" arguments="">
       <envs />
     </makefile>
     <method v="2" />

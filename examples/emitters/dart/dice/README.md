@@ -15,7 +15,7 @@ Flutter application.
 
 1. Start the OpenTelemetry Collector by running
     ```bash make 
-    make collector-up
+    make collectors-up
     ```
 2. Start the Jaeger backend by running
     ```bash make 

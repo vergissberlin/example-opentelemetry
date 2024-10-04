@@ -81,7 +81,7 @@
 1. Clone the repository
 2. Choose the language you want to learn
 3. Start the collector and receiver locally with Docker
-    1. `make collector-up`
+    1. `make collectors-up`
     2. `make receiver-up`
 4. Run the example in the language you have chosen (see README.md in the
    language folder)
