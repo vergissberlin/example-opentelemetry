@@ -1,0 +1,12 @@
+services:
+  dd-agent:
+    container_name: dd-agent
+    image: gcr.io/datadoghq/agent:7
+    env_file:
+      - .env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+    pid: "host"
+    restart: unless-stopped
