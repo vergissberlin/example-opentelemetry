@@ -5,6 +5,8 @@ services:
     image: otel/opentelemetry-collector-contrib:0.104.0
     container_name: collectors-opentelemetry-contrib
     command: ["--config=/etc/otelcol/config.yaml"]
+    env_file:
+      - ./.env
     ports:
       - "4317:4317" # OLTP receiver over GRPC
       - "4318:4318" # OTLP receiver over HTTP
@@ -17,6 +19,7 @@ services:
     volumes:
       - "./config/collector-contrib-config.yaml:/etc/otelcol/config.yaml"
       - ./logs/collector-contrib.json:/logs/collector.json
+      - /var/run/docker.sock:/var/run/docker.sock
   
 networks:
   default:

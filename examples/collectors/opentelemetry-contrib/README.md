@@ -8,8 +8,15 @@
     docker compose up -d
     ```
 
-2. Create a span with CURL
+2. Create a span with otel-cli
 
-    ```bash
-    curl -i http://localhost:5318/v1/traces -X POST -H "Content-Type: application/json" -d @span.json
-    ```
+Use [otel-cli](https://github.com/equinix-labs/otel-cli) to create a span:
+
+   ```bash
+   otel-cli span \
+     --service "my-service" \
+     --name "test-span" \
+     --kind client \
+     --endpoint "http://0.0.0.0:4317" \
+     --timeout 2s
+   ```
