@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "vergissberlin/example-opentelemetry/emitter/propagator_backend/propagator_backend";
+option java_multiple_files = true;
+option java_package = "digital.thinkport.examples.propagator";
+option java_outer_classname = "PropagatorBackendProto";
+
+package propagator_backend;
+
+service MyGrpcService {
+  rpc MyRpcMethod (MyRequest) returns (MyResponse);
+}
+
+message MyRequest {
+  string name = 1;
+}
+
+message MyResponse {
+  string message = 1;
+}
