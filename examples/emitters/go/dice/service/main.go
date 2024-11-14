@@ -56,6 +56,8 @@ func newOtlpGrpcExporter(ctx context.Context) (sdktrace.SpanExporter, error) {
 }
 
 func newTraceProvider(exp sdktrace.SpanExporter) *sdktrace.TracerProvider {
+	log.Println("newTraceProvider")
+
 	// Ensure default SDK resources and the required service name are set.
 	r, err := resource.Merge(
 		resource.Default(),
@@ -85,8 +87,35 @@ func newTraceProvider(exp sdktrace.SpanExporter) *sdktrace.TracerProvider {
 	)
 }
 
+func initializeTracing(ctx context.Context) (*sdktrace.TracerProvider, error) {
+	log.Println("initializeTracing")
+
+	// Initialize exporter
+	exp, err := newOtlpGrpcExporter(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	// Create a new trace provider with the exporter
+	tp := newTraceProvider(exp)
+	otel.SetTracerProvider(tp)
+	otel.SetTextMapPropagator(
+		propagation.NewCompositeTextMapPropagator(
+			propagation.Baggage{},
+			propagation.TraceContext{},
+		),
+	)
+
+	// Create a new tracer
+	tracer = tp.Tracer("thinkport.digital/go/dice")
+
+	return tp, nil
+}
+
 func randomHandler(w http.ResponseWriter, r *http.Request) {
-	_, span := tracer.Start(r.Context(), "Start generate random value")
+	log.Println("randomHandler")
+	//_, span := tracer.Start(r.Context(), "Start generate random value")
+	//defer span.End()
 
 	randomValue := rand.Intn(145) // Create a random number between 0 and 144
 	response := Response{RandomValue: randomValue}
@@ -96,46 +125,40 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 
 	// Add an event to the span
-	span.AddEvent("Generated random value event", trace.WithAttributes())
-
-	// End the span
-	span.End()
+	// nspan.AddEvent("Generated random value event", trace.WithAttributes())
 }
 
-func main() {
-	// Initialize context to be used in subroutines
-	ctx := context.Background()
-
-	// Initialize exporter
-	exp, err := newOtlpGrpcExporter(ctx)
-	if err != nil {
-		log.Fatalf("failed to initialize exporter: %v", err)
-	}
-
-	// Create a new trace provider with the exporter
-	tp := newTraceProvider(exp)
-	otel.SetTracerProvider(tp)
-	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(
-		propagation.Baggage{},
-		propagation.TraceContext{},
-	))
-
-	// Create a new tracer
-	tracer = tp.Tracer("thinkport.digital/go/dice")
-
+func serverHandler() {
+	log.Println("serverHandler")
 	// Define a new handler for the root path
 	http.Handle(
 		"/",
 		otelhttp.NewHandler(
 			http.HandlerFunc(randomHandler),
-			"RandomHandler",
+			"Random handler",
 		),
 	)
 
 	// Start the server on port 8080
-	log.Println("Server läuft auf http://localhost:8080")
+	log.Println("Server runs on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+func main() {
+	log.Println("main")
+
+	// Initialize context to be used in subroutines
+	ctx := context.Background()
+
+	// Initialize tracing
+	tp, err := initializeTracing(ctx)
+	if err != nil {
+		log.Fatalf("Failed to initialize tracing: %v", err)
+	}
 
 	// Handle shutdown properly so nothing leaks.
 	defer func() { _ = tp.Shutdown(ctx) }()
+
+	// Start the server
+	serverHandler()
 }
