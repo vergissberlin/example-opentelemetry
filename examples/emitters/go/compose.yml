@@ -1,0 +1,15 @@
+name: otel-emitters-nodejs
+
+services:
+  nodejs-dice:
+    build:
+      context: ./dice/
+      dockerfile: Dockerfile      
+    container_name: otel-emitters-nodejs-dice
+    ports:
+      - "8030:8030"
+
+networks:
+  default:
+    external: true
+    name: examples-opentelemetry-default

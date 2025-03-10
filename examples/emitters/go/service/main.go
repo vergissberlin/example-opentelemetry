@@ -10,10 +10,8 @@ import (
 
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/otel"
-
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
-	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.26.0"
@@ -27,10 +25,14 @@ type Response struct {
 }
 
 func newConsoleExporter() (sdktrace.SpanExporter, error) {
+	log.Println("newConsoleExporter")
 	return stdouttrace.New(stdouttrace.WithPrettyPrint())
 }
 
 func newOtlpHttpExporter(ctx context.Context) (sdktrace.SpanExporter, error) {
+	log.Println("newOtlpHttpExporter")
+
+	// Create a new OTLP trace exporter
 	otlpTraceExporter, err := otlptracegrpc.New(
 		ctx,
 		otlptracegrpc.WithEndpoint("localhost:4317"),
@@ -43,6 +45,9 @@ func newOtlpHttpExporter(ctx context.Context) (sdktrace.SpanExporter, error) {
 }
 
 func newOtlpGrpcExporter(ctx context.Context) (sdktrace.SpanExporter, error) {
+	log.Println("newOtlpGrpcExporter")
+
+	// Create a new OTLP trace exporter
 	otlpTraceExporter, err := otlptracegrpc.New(
 		ctx,
 		otlptracegrpc.WithEndpoint("localhost:4317"),
@@ -55,8 +60,8 @@ func newOtlpGrpcExporter(ctx context.Context) (sdktrace.SpanExporter, error) {
 	return otlpTraceExporter, nil
 }
 
-func newTraceProvider(exp sdktrace.SpanExporter) *sdktrace.TracerProvider {
-	log.Println("newTraceProvider")
+func initTracer(exp sdktrace.SpanExporter) *sdktrace.TracerProvider {
+	log.Println("initTracer")
 
 	// Ensure default SDK resources and the required service name are set.
 	r, err := resource.Merge(
@@ -70,7 +75,7 @@ func newTraceProvider(exp sdktrace.SpanExporter) *sdktrace.TracerProvider {
 			semconv.ServiceVersion("v1.0.0"),
 			semconv.ServiceInstanceID("instance-1"),
 			semconv.MessagingBatchMessageCount(10),
-			semconv.ServerPort(8080),
+			semconv.ServerPort(8020),
 			semconv.ServerAddress("localhost"),
 		),
 	)
@@ -97,14 +102,8 @@ func initializeTracing(ctx context.Context) (*sdktrace.TracerProvider, error) {
 	}
 
 	// Create a new trace provider with the exporter
-	tp := newTraceProvider(exp)
+	tp := initTracer(exp)
 	otel.SetTracerProvider(tp)
-	otel.SetTextMapPropagator(
-		propagation.NewCompositeTextMapPropagator(
-			propagation.Baggage{},
-			propagation.TraceContext{},
-		),
-	)
 
 	// Create a new tracer
 	tracer = tp.Tracer("thinkport.digital/go/dice")
@@ -114,10 +113,11 @@ func initializeTracing(ctx context.Context) (*sdktrace.TracerProvider, error) {
 
 func randomHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("randomHandler")
-	//_, span := tracer.Start(r.Context(), "Start generate random value")
-	//defer span.End()
+	_, span := tracer.Start(r.Context(), "Start generate random value")
+	defer span.End()
 
-	randomValue := rand.Intn(145) // Create a random number between 0 and 144
+	// Create a random number between 0 and 144
+	randomValue := rand.Intn(145)
 	response := Response{RandomValue: randomValue}
 
 	// Set the response header to application/json
@@ -125,12 +125,11 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 
 	// Add an event to the span
-	// nspan.AddEvent("Generated random value event", trace.WithAttributes())
+	span.AddEvent("Generated random value event", trace.WithAttributes())
 }
 
 func serverHandler() {
 	log.Println("serverHandler")
-	// Define a new handler for the root path
 	http.Handle(
 		"/",
 		otelhttp.NewHandler(
@@ -139,21 +138,20 @@ func serverHandler() {
 		),
 	)
 
-	// Start the server on port 8080
-	log.Println("Server runs on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	// Start the server on port 8020
+	log.Println("Server runs on http://localhost:8020")
+	log.Fatal(http.ListenAndServe(":8020", nil))
 }
 
 func main() {
 	log.Println("main")
-
 	// Initialize context to be used in subroutines
 	ctx := context.Background()
 
 	// Initialize tracing
 	tp, err := initializeTracing(ctx)
 	if err != nil {
-		log.Fatalf("Failed to initialize tracing: %v", err)
+		log.Fatalf("failed to initialize tracing: %v", err)
 	}
 
 	// Handle shutdown properly so nothing leaks.
