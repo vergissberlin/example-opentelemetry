@@ -23,14 +23,14 @@
 
 ### Emitters (SDKs)
 
-| SDK    | Status | URL                                    | Docs                               |
-|--------|--------|----------------------------------------|------------------------------------|
+| SDK    | Status | URL                                    | Docs                                |
+|--------|--------|----------------------------------------|-------------------------------------|
 | dart   | ✔️     | <http://0.0.0.0:8051/>                 | [code](examples/emitters/dart/dice) |
-| go     |        |                                        |                                    |
-| java   |        |                                        |                                    |
-| nodejs | ✔️     | <http://0.0.0.0:8030/?rolls=12>        | [code](examples/emitters/nodejs)   |
-| python | ✔️     | <http://0.0.0.0:8050/rolldice?roll=12> | [code](examples/emitters/python)   |
-| rust   |        |                                        |                                    |
+| go     |        |                                        |                                     |
+| java   |        |                                        |                                     |
+| nodejs | ✔️     | <http://0.0.0.0:8030/?rolls=12>        | [code](examples/emitters/nodejs)    |
+| python | ✔️     | <http://0.0.0.0:8050/rolldice?roll=12> | [code](examples/emitters/python)    |
+| rust   |        |                                        |                                     |
 
 ### Collectors
 

@@ -1,11 +1,11 @@
 package main
 
 import (
-    pb "/Users/andrelademann/Development/vergissberlin/example-opentelemetry/examples/emitters/dart/propagator-backend"
     "context"
     "fmt"
     "log"
     "net"
+    pb "vergissberlin/example-opentelemetry/emitter/propagator/propagator"
 
     "go.opentelemetry.io/otel"
     "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"

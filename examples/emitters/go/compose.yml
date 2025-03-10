@@ -1,13 +1,13 @@
 name: otel-emitters-nodejs
 
 services:
-  nodejs-dice:
+  go-service:
     build:
-      context: ./dice/
+      context: ./service/
       dockerfile: Dockerfile      
-    container_name: otel-emitters-nodejs-dice
+    container_name: otel-emitters-go-service
     ports:
-      - "8030:8030"
+      - "8020:8020"
 
 networks:
   default:

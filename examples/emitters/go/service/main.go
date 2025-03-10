@@ -50,7 +50,7 @@ func newOtlpGrpcExporter(ctx context.Context) (sdktrace.SpanExporter, error) {
 	// Create a new OTLP trace exporter
 	otlpTraceExporter, err := otlptracegrpc.New(
 		ctx,
-		otlptracegrpc.WithEndpoint("localhost:4317"),
+		otlptracegrpc.WithEndpoint("collectors-opentelemetry-contrib:4317"),
 		otlptracegrpc.WithInsecure(),
 		otlptracegrpc.WithTimeout(10*time.Second),
 	)

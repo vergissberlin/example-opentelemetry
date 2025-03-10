@@ -13,3 +13,7 @@
 !/LICENSE
 !/Makefile
 !/README.md
+
+
+node_modules
+.DS_Store
