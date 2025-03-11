@@ -3,7 +3,28 @@
 This example shows how to deploy the OpenTelemetry Collector as a Kubernetes DaemonSet.
 
 ## Was ist ein DaemonSet in Kubernetes?
-Ein DaemonSet ist eine spezielle Art von Kubernetes-Deployment, die sicherstellt, dass ein bestimmter Pod auf jedem Node im Cluster läuft.
+
+Ein DaemonSet ist eine spezielle Art von Kubernetes-Deployment, 
+die sicherstellt, dass ein bestimmter Pod auf jedem Node im Cluster läuft.
+
+```mermaid
+graph TD
+  subgraph "Kubernetes Cluster"
+    subgraph "Node 1"
+      P1["DaemonSet Pod"]
+    end
+    subgraph "Node 2"
+      P2["DaemonSet Pod"]
+    end
+    subgraph "Node 3"
+      P3["DaemonSet Pod"]
+    end
+  end
+
+  DS["DaemonSet Controller"] -->|Erstellt| P1
+  DS -->|Erstellt| P2
+  DS -->|Erstellt| P3
+```
 
 ## Wofür?
 DaemonSets werden häufig für systemnahe Services genutzt, die auf allen Nodes laufen müssen, z. B.:
@@ -97,22 +118,3 @@ kubectl delete daemonset otel-collector-daemonset -n monitoring
 - [ ] Falls dein Service direkt mit dem Hostsystem interagieren muss
 
 Falls du Pods flexibel auf Nodes verteilen möchtest, wäre ein Deployment oder StatefulSet besser.
-
-```mermaid
-graph TD
-  subgraph "Kubernetes Cluster"
-    subgraph "Node 1"
-      P1["DaemonSet Pod"]
-    end
-    subgraph "Node 2"
-      P2["DaemonSet Pod"]
-    end
-    subgraph "Node 3"
-      P3["DaemonSet Pod"]
-    end
-  end
-
-  DS["DaemonSet Controller"] -->|Erstellt| P1
-  DS -->|Erstellt| P2
-  DS -->|Erstellt| P3
-```
