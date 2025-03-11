@@ -33,18 +33,13 @@ DaemonSets werden häufig für systemnahe Services genutzt, die auf allen Nodes 
 - [ ] Monitoring-Agenten (z. B. Prometheus Node Exporter, OpenTelemetry Collector)
 - [ ] Netzwerkdienste (z. B. CNI-Plugins wie Calico oder Cilium)
 
-
 ## Wie unterscheidet sich ein DaemonSet von einem Deployment?
 
-| Feature |	DaemonSet |	Deployment|
-| --- | --- | --- |
-|Wo laufen die Pods?|	Auf jedem Node	Kubernetes entscheidet, wo
-Wann werden neue Pods erstellt?	Immer, wenn ein neuer Node hinzukommt	| Wenn gewünscht
-Skalierung	Automatisch mit Nodes	Manuell über replicas:
-
-
-
-⸻
+| Feature                         | DaemonSet                              | Deployment                 |
+|---------------------------------|----------------------------------------|----------------------------|
+| Wo laufen die Pods?             | Auf jedem Node                         | Kubernetes entscheidet, wo |
+| Wann werden neue Pods erstellt? | Immer, wenn ein neuer Node hinzukommt  | Wenn gewünscht             |
+| Skalierung                      | Automatisch mit Nodes                  | Manuell über replicas      |
 
 ### Beispiel: OpenTelemetry Collector als DaemonSet
 
@@ -80,10 +75,8 @@ spec:
 
 ###💡 Erklärung
 
--	Kubernetes startet den OTel Collector auf jedem Node.
--	Falls ein neuer Node zum Cluster hinzukommt, wird dort automatisch auch 
-     ein Pod erstellt.
-
+- Kubernetes startet den OTel Collector auf jedem Node.
+- Falls ein neuer Node zum Cluster hinzukommt, wird dort automatisch auch ein Pod erstellt.
 
 ### DaemonSet verwalten
 
